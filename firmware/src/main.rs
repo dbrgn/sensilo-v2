@@ -1,4 +1,4 @@
-use std::sync::Mutex;
+use std::{io::Write, sync::Mutex};
 
 use anyhow::Context;
 use embedded_hal_0_2::blocking::delay::{DelayMs, DelayUs};
@@ -48,6 +48,10 @@ struct Measurements {
     co2eq_ppm: Option<u16>,
     /// TVOC equivalent in PPB
     tvoc_ppb: Option<u16>,
+}
+
+fn flush_stdout() {
+    let _ = std::io::stdout().flush();
 }
 
 fn main() -> anyhow::Result<()> {
@@ -151,10 +155,12 @@ fn main() -> anyhow::Result<()> {
 
     // Wait for IP assignment from DHCP
     print!("WiFi connected! Waiting for IP");
+    flush_stdout();
     loop {
         let ip_info = wifi.sta_netif().get_ip_info().unwrap();
         if ip_info.ip.is_unspecified() {
             print!(".");
+            flush_stdout();
             delay.delay_ms(250);
         } else {
             println!("\n  Assigned IP: {}", ip_info.ip);
@@ -209,8 +215,10 @@ fn connect_wifi(
             .and_then(|conf| conf.as_client_conf_ref().map(|client| &client.ssid))
             .unwrap()
     );
+    flush_stdout();
     while !wifi.is_connected().unwrap() {
         print!(".");
+        flush_stdout();
         FreeRtos::delay_ms(250);
     }
     println!();
