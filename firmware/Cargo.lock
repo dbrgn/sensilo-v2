@@ -1246,6 +1246,7 @@ dependencies = [
  "esp-idf-sys",
  "sgp30",
  "shared-bus",
+ "shtcx",
  "veml6030",
 ]
 
@@ -1317,6 +1318,15 @@ name = "shlex"
 version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "43b2853a4d09f215c24cc5489c992ce46052d359b5109343cbafbf26bc62f8a3"
+
+[[package]]
+name = "shtcx"
+version = "0.11.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f5bd1204f09b6ac592e246244e611a42a7d8f373b52dd8af27435305469e9a4d"
+dependencies = [
+ "embedded-hal 0.2.7",
+]
 
 [[package]]
 name = "slab"

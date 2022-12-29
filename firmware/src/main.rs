@@ -11,6 +11,7 @@ use esp_idf_hal::{
 use esp_idf_svc::{eventloop::EspSystemEventLoop, nvs::EspDefaultNvsPartition, wifi::EspWifi};
 use sgp30::Sgp30;
 use shared_bus::I2cProxy;
+use shtcx::ShtC3;
 use veml6030::Veml6030;
 
 mod delay;
@@ -24,6 +25,7 @@ type SharedBuxProxyI2c<'a> = I2cProxy<'a, Mutex<I2cDriver<'a>>>;
 
 #[derive(Default)]
 struct Sensors<'a> {
+    temp_humi: Option<ShtC3<SharedBuxProxyI2c<'a>>>,
     lux: Option<Veml6030<SharedBuxProxyI2c<'a>>>,
     gas: Option<Sgp30<SharedBuxProxyI2c<'a>, GeneralPurposeDelay>>,
 }
@@ -31,7 +33,7 @@ struct Sensors<'a> {
 fn main() -> anyhow::Result<()> {
     esp_idf_sys::link_patches();
 
-    println!("Initializing Sensilo");
+    println!("Initializing Sensilo\n");
 
     // Core resources
     let peripherals = Peripherals::take().unwrap();
@@ -56,6 +58,23 @@ fn main() -> anyhow::Result<()> {
 
     // Sensors wrapper
     let mut sensors = Sensors::default();
+
+    // Initialize SHTC3 temperature/humidity sensor
+    if cfg!(feature = "temp_humi") {
+        println!("SHTC3: Enabled");
+        let mut shtc3 = shtcx::shtc3(i2c.acquire_i2c());
+        let mut success = true;
+        match shtc3.device_identifier() {
+            Ok(id) => println!("  Device ID: {}", id),
+            Err(e) => {
+                eprintln!("  Error: Could not get device ID: {:?}", e);
+                success = false;
+            }
+        }
+        if success {
+            sensors.temp_humi = Some(shtc3);
+        }
+    }
 
     // Initialize VEML7700 lux sensor
     if cfg!(feature = "lux") {
@@ -105,6 +124,8 @@ fn main() -> anyhow::Result<()> {
         }
     }
 
+    println!();
+
     // Connect WiFi
     let mut wifi = EspWifi::new(peripherals.modem, sys_loop, Some(nvs))
         .context("Could not create EspWifi instance")?;
@@ -150,16 +171,33 @@ fn main() -> anyhow::Result<()> {
     println!();
 
     println!("Usable sensors:");
+    println!(
+        "  Temperature/Humidity (SHTC3): {}",
+        sensors.temp_humi.is_some()
+    );
     println!("  Lux (VEML7700): {}", sensors.lux.is_some());
+    println!("  Gas (SGP30): {}", sensors.gas.is_some());
     println!();
 
     println!("Starting main loop");
     loop {
         println!("------");
+
+        // Read temp/humi sensor, if present
+        if let Some(ref mut shtc3) = sensors.temp_humi {
+            match shtc3.measure(shtcx::PowerMode::NormalMode, &mut delay) {
+                Ok(measurement) => {
+                    println!("Temp:  {} °C", measurement.temperature.as_degrees_celsius());
+                    println!("Humi:  {} %RH", measurement.humidity.as_percent());
+                }
+                Err(e) => eprintln!("Temp/Humi: ERROR: {:?}", e),
+            }
+        }
+
         // Read lux sensor, if present
         if let Some(ref mut veml) = sensors.lux {
             match veml.read_lux() {
-                Ok(lux) => println!("Lux:       {}", lux),
+                Ok(lux) => println!("Lux:   {}", lux),
                 Err(e) => eprintln!("Lux: ERROR: {:?}", e),
             }
         }
@@ -168,8 +206,8 @@ fn main() -> anyhow::Result<()> {
         if let Some(ref mut sgp30) = sensors.gas {
             match sgp30.measure() {
                 Ok(measurement) => {
-                    println!("CO₂eq PPM: {}", measurement.co2eq_ppm);
-                    println!("TVOC PPB:  {}", measurement.tvoc_ppb);
+                    println!("CO₂eq: {} PPM", measurement.co2eq_ppm);
+                    println!("TVOC:  {} PPB", measurement.tvoc_ppb);
                 }
                 Err(e) => eprintln!("Gas: ERROR: {:?}", e),
             }
