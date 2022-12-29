@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+
+env:
+  CARGO_TERM_COLOR: always
+  SENSILO_WIFI_SSID: example
+  SENSILO_WIFI_PASSWORD: sup3rs3cur3
+
+jobs:
+  build:
+    name: Build for ESP32-C3
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      # Install the toolchain (side effect of all cargo commands, thanks to rust-toolchain.toml)
+      - name: Install toolchain
+        run: cd firmware && cargo locate-project
+
+      # Set up caching
+      - uses: Swatinem/rust-cache@v2
+
+      # Install ldproxy
+      - name: Install ldproxy
+        run: cargo install ldproxy
+
+      # Check and build
+      - name: Check
+        run: cd firmware && cargo check
+      - name: Build
+        run: cd firmware && cargo build
