@@ -4,11 +4,17 @@ use anyhow::Context;
 use embedded_hal_0_2::blocking::delay::{DelayMs, DelayUs};
 use embedded_svc::wifi::{ClientConfiguration, Configuration, Wifi};
 use esp_idf_hal::{
+    delay::FreeRtos,
     i2c::{config::Config as I2cConfig, I2cDriver},
+    modem::Modem,
     peripherals::Peripherals,
     units::FromValueType,
 };
-use esp_idf_svc::{eventloop::EspSystemEventLoop, nvs::EspDefaultNvsPartition, wifi::EspWifi};
+use esp_idf_svc::{
+    eventloop::{EspEventLoop, EspSystemEventLoop, System},
+    nvs::{EspDefaultNvsPartition, EspNvsPartition, NvsDefault},
+    wifi::EspWifi,
+};
 use sgp30::Sgp30;
 use shared_bus::I2cProxy;
 use shtcx::ShtC3;
@@ -141,29 +147,7 @@ fn main() -> anyhow::Result<()> {
     println!();
 
     // Connect WiFi
-    let mut wifi = EspWifi::new(peripherals.modem, sys_loop, Some(nvs))
-        .context("Could not create EspWifi instance")?;
-    wifi.set_configuration(&Configuration::Client(ClientConfiguration {
-        ssid: env!("SENSILO_WIFI_SSID").into(),
-        password: env!("SENSILO_WIFI_PASSWORD").into(),
-        ..Default::default()
-    }))
-    .unwrap();
-    wifi.start().context("Could not start WiFi")?;
-    wifi.connect().context("Could not connect WiFi")?;
-    print!(
-        "Waiting for station with SSID {}",
-        wifi.get_configuration()
-            .ok()
-            .as_ref()
-            .and_then(|conf| conf.as_client_conf_ref().map(|client| &client.ssid))
-            .unwrap()
-    );
-    while !wifi.is_connected().unwrap() {
-        print!(".");
-        delay.delay_ms(250);
-    }
-    println!();
+    let wifi = connect_wifi(peripherals.modem, sys_loop, nvs)?;
 
     // Wait for IP assignment from DHCP
     print!("WiFi connected! Waiting for IP");
@@ -199,6 +183,39 @@ fn main() -> anyhow::Result<()> {
         let measurements = read_sensors(&mut sensors, &mut delay);
         delay.delay_ms(1000 - 12);
     }
+}
+
+fn connect_wifi(
+    modem: Modem,
+    event_loop: EspEventLoop<System>,
+    nvs: EspNvsPartition<NvsDefault>,
+) -> anyhow::Result<EspWifi<'static>> {
+    let mut wifi =
+        EspWifi::new(modem, event_loop, Some(nvs)).context("Could not create EspWifi instance")?;
+
+    wifi.set_configuration(&Configuration::Client(ClientConfiguration {
+        ssid: env!("SENSILO_WIFI_SSID").into(),
+        password: env!("SENSILO_WIFI_PASSWORD").into(),
+        ..Default::default()
+    }))
+    .unwrap();
+    wifi.start().context("Could not start WiFi")?;
+    wifi.connect().context("Could not connect WiFi")?;
+    print!(
+        "Waiting for station with SSID {}",
+        wifi.get_configuration()
+            .ok()
+            .as_ref()
+            .and_then(|conf| conf.as_client_conf_ref().map(|client| &client.ssid))
+            .unwrap()
+    );
+    while !wifi.is_connected().unwrap() {
+        print!(".");
+        FreeRtos::delay_ms(250);
+    }
+    println!();
+
+    Ok(wifi)
 }
 
 /// Read sensors, print data and return measurements.
