@@ -669,6 +669,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "libm"
+version = "0.1.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7fc7aa29613bd6a620df431842069224d8bc9011086b1db4c0e0cd47fa03ec9a"
+
+[[package]]
 name = "link-cplusplus"
 version = "1.0.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -947,6 +953,7 @@ dependencies = [
  "embuild",
  "esp-idf-hal",
  "esp-idf-sys",
+ "veml6030",
 ]
 
 [[package]]
@@ -1114,6 +1121,16 @@ name = "unicode-xid"
 version = "0.2.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f962df74c8c05a667b5ee8bcf162993134c104e96440b663c8daa176dc772d8c"
+
+[[package]]
+name = "veml6030"
+version = "0.1.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ab645740fe87f774fa88df734968ff1cd8474b94d869f10367eb9a7d520be383"
+dependencies = [
+ "embedded-hal 0.2.7",
+ "libm",
+]
 
 [[package]]
 name = "void"

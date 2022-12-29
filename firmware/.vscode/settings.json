@@ -1,4 +1,13 @@
 {
+    "[rust]": {
+        "editor.defaultFormatter": "rust-lang.rust-analyzer"
+    },
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "files.exclude": {
+        "**/target": true
+    },
+    "rewrap.wrappingColumn": 100,
     "rust-analyzer.checkOnSave.allTargets": false,
     "rust-analyzer.cargo.target": "riscv32imc-esp-espidf"
 }
