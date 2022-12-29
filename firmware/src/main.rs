@@ -25,17 +25,16 @@ fn main() -> anyhow::Result<()> {
     let mut led_r = esp_idf_hal::gpio::PinDriver::output(peripherals.pins.gpio3)?;
 
     // I2C bus
-    let mut i2c = I2cDriver::new(
+    let i2c = I2cDriver::new(
         peripherals.i2c0,
-        peripherals.pins.gpio8, // SDA
-        peripherals.pins.gpio9, // SCL
+        peripherals.pins.gpio6, // SDA
+        peripherals.pins.gpio7, // SCL
         &I2cConfig::new()
-            .baudrate(100.kHz().into())
+            .baudrate(380.kHz().into())
             .sda_enable_pullup(true)
             .scl_enable_pullup(true),
     )
     .context("Could not initialize I2C driver")?;
-    println!("Write result: {:?}", i2c.write(0x3c, &[1, 2, 3], 999999));
 
     // Initialize VEML7700 lux sensor
     let mut veml = Veml6030::new(i2c, veml6030::SlaveAddr::default());
@@ -90,11 +89,20 @@ fn main() -> anyhow::Result<()> {
         }
     }
 
+    // Turn on VEML7700
+    if let Err(e) = veml.enable() {
+        eprintln!("VEML7700: Could not enable sensor: {:?}", e);
+    }
+    // After enabling the sensor, a startup time of 4 ms plus the integration time must be awaited.
+    FreeRtos::delay_us(VEML_INTEGRATION_TIME.as_us() + 4_000);
+
     println!("Starting main loop");
     loop {
         led_r.set_high()?;
         FreeRtos::delay_ms(1000);
         led_r.set_low()?;
         FreeRtos::delay_ms(1000);
+
+        println!("Lux: {:?}", veml.read_lux());
     }
 }
