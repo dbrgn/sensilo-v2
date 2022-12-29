@@ -18,3 +18,7 @@ system a lot.
 
 "Sensilo" is the [Esperanto word for
 "sensor"](https://en.bab.la/dictionary/esperanto-english/sensilo).
+
+## Components
+
+- [Firmware](./firmware/)
