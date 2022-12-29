@@ -182,37 +182,39 @@ fn main() -> anyhow::Result<()> {
     println!("Starting main loop");
     loop {
         println!("------");
-
-        // Read temp/humi sensor, if present
-        if let Some(ref mut shtc3) = sensors.temp_humi {
-            match shtc3.measure(shtcx::PowerMode::NormalMode, &mut delay) {
-                Ok(measurement) => {
-                    println!("Temp:  {} °C", measurement.temperature.as_degrees_celsius());
-                    println!("Humi:  {} %RH", measurement.humidity.as_percent());
-                }
-                Err(e) => eprintln!("Temp/Humi: ERROR: {:?}", e),
-            }
-        }
-
-        // Read lux sensor, if present
-        if let Some(ref mut veml) = sensors.lux {
-            match veml.read_lux() {
-                Ok(lux) => println!("Lux:   {}", lux),
-                Err(e) => eprintln!("Lux: ERROR: {:?}", e),
-            }
-        }
-
-        // Read gas sensor, if present
-        if let Some(ref mut sgp30) = sensors.gas {
-            match sgp30.measure() {
-                Ok(measurement) => {
-                    println!("CO₂eq: {} PPM", measurement.co2eq_ppm);
-                    println!("TVOC:  {} PPB", measurement.tvoc_ppb);
-                }
-                Err(e) => eprintln!("Gas: ERROR: {:?}", e),
-            }
-        }
-
+        read_sensors(&mut sensors, &mut delay);
         delay.delay_ms(1000 - 12);
+    }
+}
+
+fn read_sensors(sensors: &mut Sensors, delay: &mut GeneralPurposeDelay) {
+    // Read temp/humi sensor, if present
+    if let Some(ref mut shtc3) = sensors.temp_humi {
+        match shtc3.measure(shtcx::PowerMode::NormalMode, delay) {
+            Ok(measurement) => {
+                println!("Temp:  {} °C", measurement.temperature.as_degrees_celsius());
+                println!("Humi:  {} %RH", measurement.humidity.as_percent());
+            }
+            Err(e) => eprintln!("Temp/Humi: ERROR: {:?}", e),
+        }
+    }
+
+    // Read lux sensor, if present
+    if let Some(ref mut veml) = sensors.lux {
+        match veml.read_lux() {
+            Ok(lux) => println!("Lux:   {}", lux),
+            Err(e) => eprintln!("Lux: ERROR: {:?}", e),
+        }
+    }
+
+    // Read gas sensor, if present
+    if let Some(ref mut sgp30) = sensors.gas {
+        match sgp30.measure() {
+            Ok(measurement) => {
+                println!("CO₂eq: {} PPM", measurement.co2eq_ppm);
+                println!("TVOC:  {} PPB", measurement.tvoc_ppb);
+            }
+            Err(e) => eprintln!("Gas: ERROR: {:?}", e),
+        }
     }
 }
