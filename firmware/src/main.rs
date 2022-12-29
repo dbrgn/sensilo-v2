@@ -86,66 +86,19 @@ fn main() -> anyhow::Result<()> {
     // Initialize SHTC3 temperature/humidity sensor
     if cfg!(feature = "temp_humi") {
         println!("SHTC3: Enabled");
-        let mut shtc3 = shtcx::shtc3(i2c.acquire_i2c());
-        let mut success = true;
-        match shtc3.device_identifier() {
-            Ok(id) => println!("  Device ID: {}", id),
-            Err(e) => {
-                eprintln!("  Error: Could not get device ID: {:?}", e);
-                success = false;
-            }
-        }
-        if success {
-            sensors.temp_humi = Some(shtc3);
-        }
+        init_shtc3(&mut sensors, i2c.acquire_i2c());
     }
 
     // Initialize VEML7700 lux sensor
     if cfg!(feature = "lux") {
         println!("VEML7700: Enabled");
-        let mut veml = Veml6030::new(i2c.acquire_i2c(), veml6030::SlaveAddr::default());
-        delay.delay_ms(10);
-        let mut success = true;
-        if let Err(e) = veml.set_gain(veml6030::Gain::OneQuarter) {
-            eprintln!("  Error: Could not set gain: {:?}", e);
-            success = false;
-        }
-        if let Err(e) = veml.set_integration_time(VEML_INTEGRATION_TIME) {
-            eprintln!("  Error: Could not set integration time: {:?}", e);
-            success = false;
-        }
-        if let Err(e) = veml.enable() {
-            eprintln!("  Error: Could not enable sensor: {:?}", e);
-            success = false;
-        }
-
-        // After enabling the sensor, a startup time of 4 ms plus the integration time must be awaited.
-        delay.delay_us(VEML_INTEGRATION_TIME.as_us() + 4_000);
-
-        if success {
-            sensors.lux = Some(veml);
-        }
+        init_veml7700(&mut sensors, i2c.acquire_i2c());
     }
 
     // Initialize SGP30 gas sensor
     if cfg!(feature = "gas") {
         println!("SGP30: Enabled");
-        let mut sgp30 = Sgp30::new(i2c.acquire_i2c(), 0x58, delay);
-        let mut success = true;
-        match sgp30.serial() {
-            Ok(serial) => println!("  Serial: {:?}", serial),
-            Err(e) => {
-                eprintln!("  Error: Could not get serial: {:?}", e);
-                success = false;
-            }
-        }
-        if let Err(e) = sgp30.init() {
-            eprintln!("  Error: Could not initialize: {:?}", e);
-            success = false;
-        }
-        if success {
-            sensors.gas = Some(sgp30);
-        }
+        init_sgp30(&mut sensors, i2c.acquire_i2c());
     }
 
     println!();
@@ -188,6 +141,68 @@ fn main() -> anyhow::Result<()> {
         println!("------");
         let measurements = read_sensors(&mut sensors, &mut delay);
         delay.delay_ms(1000 - 12);
+    }
+}
+
+/// Initialize the SHTC3 sensor. If successful, add it to the [`Sensors`] instance.
+fn init_shtc3<'a>(sensors: &mut Sensors<'a>, i2c: SharedBuxProxyI2c<'a>) {
+    let mut shtc3 = shtcx::shtc3(i2c);
+    let mut success = true;
+    match shtc3.device_identifier() {
+        Ok(id) => println!("  Device ID: {}", id),
+        Err(e) => {
+            eprintln!("  Error: Could not get device ID: {:?}", e);
+            success = false;
+        }
+    }
+    if success {
+        sensors.temp_humi = Some(shtc3);
+    }
+}
+
+/// Initialize the VEML7700 sensor. If successful, add it to the [`Sensors`] instance.
+fn init_veml7700<'a>(sensors: &mut Sensors<'a>, i2c: SharedBuxProxyI2c<'a>) {
+    let mut delay = GeneralPurposeDelay;
+    let mut veml = Veml6030::new(i2c, veml6030::SlaveAddr::default());
+    let mut success = true;
+    if let Err(e) = veml.set_gain(veml6030::Gain::OneQuarter) {
+        eprintln!("  Error: Could not set gain: {:?}", e);
+        success = false;
+    }
+    if let Err(e) = veml.set_integration_time(VEML_INTEGRATION_TIME) {
+        eprintln!("  Error: Could not set integration time: {:?}", e);
+        success = false;
+    }
+    if let Err(e) = veml.enable() {
+        eprintln!("  Error: Could not enable sensor: {:?}", e);
+        success = false;
+    }
+
+    // After enabling the sensor, a startup time of 4 ms plus the integration time must be awaited.
+    delay.delay_us(VEML_INTEGRATION_TIME.as_us() + 4_000);
+
+    if success {
+        sensors.lux = Some(veml);
+    }
+}
+
+/// Initialize the SGP30 sensor. If successful, add it to the [`Sensors`] instance.
+fn init_sgp30<'a>(sensors: &mut Sensors<'a>, i2c: SharedBuxProxyI2c<'a>) {
+    let mut sgp30 = Sgp30::new(i2c, 0x58, GeneralPurposeDelay);
+    let mut success = true;
+    match sgp30.serial() {
+        Ok(serial) => println!("  Serial: {:?}", serial),
+        Err(e) => {
+            eprintln!("  Error: Could not get serial: {:?}", e);
+            success = false;
+        }
+    }
+    if let Err(e) = sgp30.init() {
+        eprintln!("  Error: Could not initialize: {:?}", e);
+        success = false;
+    }
+    if success {
+        sensors.gas = Some(sgp30);
     }
 }
 
