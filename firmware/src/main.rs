@@ -1,3 +1,5 @@
+use std::sync::Mutex;
+
 use anyhow::Context;
 use embedded_svc::wifi::{ClientConfiguration, Configuration, Wifi};
 use esp_idf_hal::{
@@ -7,10 +9,18 @@ use esp_idf_hal::{
     units::FromValueType,
 };
 use esp_idf_svc::{eventloop::EspSystemEventLoop, nvs::EspDefaultNvsPartition, wifi::EspWifi};
+use shared_bus::I2cProxy;
 use veml6030::Veml6030;
 
-// VEML sensor integration time
+/// VEML sensor integration time
 const VEML_INTEGRATION_TIME: veml6030::IntegrationTime = veml6030::IntegrationTime::Ms25;
+
+type SharedBuxProxyI2c<'a> = I2cProxy<'a, Mutex<I2cDriver<'a>>>;
+
+#[derive(Default)]
+struct Sensors<'a> {
+    lux: Option<Veml6030<SharedBuxProxyI2c<'a>>>,
+}
 
 fn main() -> anyhow::Result<()> {
     esp_idf_sys::link_patches();
@@ -21,8 +31,6 @@ fn main() -> anyhow::Result<()> {
     let peripherals = Peripherals::take().unwrap();
     let sys_loop = EspSystemEventLoop::take().unwrap();
     let nvs = EspDefaultNvsPartition::take().unwrap();
-
-    let mut led_r = esp_idf_hal::gpio::PinDriver::output(peripherals.pins.gpio3)?;
 
     // I2C bus
     let i2c0 = I2cDriver::new(
@@ -37,14 +45,26 @@ fn main() -> anyhow::Result<()> {
     .context("Could not initialize I2C driver")?;
     let i2c: &'static _ = shared_bus::new_std!(I2cDriver = i2c0).unwrap();
 
+    // Sensors wrapper
+    let mut sensors = Sensors::default();
+
     // Initialize VEML7700 lux sensor
-    let mut veml = Veml6030::new(i2c.acquire_i2c(), veml6030::SlaveAddr::default());
-    FreeRtos::delay_ms(10);
-    if let Err(e) = veml.set_gain(veml6030::Gain::OneQuarter) {
-        eprintln!("VEML7700: Could not set gain: {:?}", e);
-    }
-    if let Err(e) = veml.set_integration_time(VEML_INTEGRATION_TIME) {
-        eprintln!("VEML7700: Could not set integration time: {:?}", e);
+    if cfg!(feature = "lux") {
+        println!("VEML7700: Enabled");
+        let mut veml = Veml6030::new(i2c.acquire_i2c(), veml6030::SlaveAddr::default());
+        FreeRtos::delay_ms(10);
+        let mut success = true;
+        if let Err(e) = veml.set_gain(veml6030::Gain::OneQuarter) {
+            eprintln!("  VEML7700: Could not set gain: {:?}", e);
+            success = false;
+        }
+        if let Err(e) = veml.set_integration_time(VEML_INTEGRATION_TIME) {
+            eprintln!("  VEML7700: Could not set integration time: {:?}", e);
+            success = false;
+        }
+        if success {
+            sensors.lux = Some(veml);
+        }
     }
 
     // Connect WiFi
@@ -89,21 +109,28 @@ fn main() -> anyhow::Result<()> {
             break;
         }
     }
+    println!();
 
-    // Turn on VEML7700
-    if let Err(e) = veml.enable() {
-        eprintln!("VEML7700: Could not enable sensor: {:?}", e);
+    // Turn on VEML7700, if present
+    if let Some(ref mut veml) = sensors.lux {
+        if let Err(e) = veml.enable() {
+            eprintln!("VEML7700: Could not enable sensor: {:?}", e);
+        }
+        // After enabling the sensor, a startup time of 4 ms plus the integration time must be awaited.
+        FreeRtos::delay_us(VEML_INTEGRATION_TIME.as_us() + 4_000);
     }
-    // After enabling the sensor, a startup time of 4 ms plus the integration time must be awaited.
-    FreeRtos::delay_us(VEML_INTEGRATION_TIME.as_us() + 4_000);
+
+    println!("Usable sensors:");
+    println!("  Lux (VEML7700): {}", sensors.lux.is_some());
+    println!();
 
     println!("Starting main loop");
     loop {
-        led_r.set_high()?;
-        FreeRtos::delay_ms(1000);
-        led_r.set_low()?;
-        FreeRtos::delay_ms(1000);
+        // Read lux sensor, if present
+        if let Some(ref mut veml) = sensors.lux {
+            println!("Lux: {:?}", veml.read_lux());
+        }
 
-        println!("Lux: {:?}", veml.read_lux());
+        FreeRtos::delay_ms(250);
     }
 }
