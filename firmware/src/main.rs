@@ -25,7 +25,7 @@ fn main() -> anyhow::Result<()> {
     let mut led_r = esp_idf_hal::gpio::PinDriver::output(peripherals.pins.gpio3)?;
 
     // I2C bus
-    let i2c = I2cDriver::new(
+    let i2c0 = I2cDriver::new(
         peripherals.i2c0,
         peripherals.pins.gpio6, // SDA
         peripherals.pins.gpio7, // SCL
@@ -35,9 +35,10 @@ fn main() -> anyhow::Result<()> {
             .scl_enable_pullup(true),
     )
     .context("Could not initialize I2C driver")?;
+    let i2c: &'static _ = shared_bus::new_std!(I2cDriver = i2c0).unwrap();
 
     // Initialize VEML7700 lux sensor
-    let mut veml = Veml6030::new(i2c, veml6030::SlaveAddr::default());
+    let mut veml = Veml6030::new(i2c.acquire_i2c(), veml6030::SlaveAddr::default());
     FreeRtos::delay_ms(10);
     if let Err(e) = veml.set_gain(veml6030::Gain::OneQuarter) {
         eprintln!("VEML7700: Could not set gain: {:?}", e);
