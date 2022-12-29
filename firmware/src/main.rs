@@ -1,10 +1,12 @@
 use anyhow::Context;
+use embedded_svc::wifi::{ClientConfiguration, Configuration, Wifi};
 use esp_idf_hal::{
     delay::FreeRtos,
     i2c::{config::Config as I2cConfig, I2cDriver},
     peripherals::Peripherals,
     units::FromValueType,
 };
+use esp_idf_svc::{eventloop::EspSystemEventLoop, nvs::EspDefaultNvsPartition, wifi::EspWifi};
 use veml6030::Veml6030;
 
 // VEML sensor integration time
@@ -15,7 +17,11 @@ fn main() -> anyhow::Result<()> {
 
     println!("Initializing Sensilo");
 
+    // Core resources
     let peripherals = Peripherals::take().unwrap();
+    let sys_loop = EspSystemEventLoop::take().unwrap();
+    let nvs = EspDefaultNvsPartition::take().unwrap();
+
     let mut led_r = esp_idf_hal::gpio::PinDriver::output(peripherals.pins.gpio3)?;
 
     // I2C bus
@@ -41,7 +47,50 @@ fn main() -> anyhow::Result<()> {
         eprintln!("VEML7700: Could not set integration time: {:?}", e);
     }
 
-    println!("Starting Sensilo");
+    // Connect WiFi
+    let mut wifi = EspWifi::new(peripherals.modem, sys_loop, Some(nvs))
+        .context("Could not create EspWifi instance")?;
+    wifi.set_configuration(&Configuration::Client(ClientConfiguration {
+        ssid: env!("SENSILO_WIFI_SSID").into(),
+        password: env!("SENSILO_WIFI_PASSWORD").into(),
+        ..Default::default()
+    }))
+    .unwrap();
+    wifi.start().context("Could not start WiFi")?;
+    wifi.connect().context("Could not connect WiFi")?;
+    print!(
+        "Waiting for station with SSID {}",
+        wifi.get_configuration()
+            .ok()
+            .as_ref()
+            .and_then(|conf| conf.as_client_conf_ref().map(|client| &client.ssid))
+            .unwrap()
+    );
+    while !wifi.is_connected().unwrap() {
+        print!(".");
+        FreeRtos::delay_ms(250);
+    }
+    println!();
+
+    // Wait for IP assignment from DHCP
+    print!("WiFi connected! Waiting for IP");
+    loop {
+        let ip_info = wifi.sta_netif().get_ip_info().unwrap();
+        if ip_info.ip.is_unspecified() {
+            print!(".");
+            FreeRtos::delay_ms(250);
+        } else {
+            println!("\n  Assigned IP: {}", ip_info.ip);
+            if let Some(dns) = ip_info.dns {
+                println!("  DNS:         {}", dns);
+            } else {
+                println!("  Warning: No DNS server assigned!");
+            }
+            break;
+        }
+    }
+
+    println!("Starting main loop");
     loop {
         led_r.set_high()?;
         FreeRtos::delay_ms(1000);

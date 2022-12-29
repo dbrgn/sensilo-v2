@@ -6,7 +6,9 @@ edition = "2021"
 
 [dependencies]
 anyhow = "1"
+embedded-svc = "0.24"
 esp-idf-hal = "0.40.1"
+esp-idf-svc = "0.45.0"
 esp-idf-sys = { version = "0.32.1", features = ["binstart"] }
 veml6030 = "0.1.2"
 
