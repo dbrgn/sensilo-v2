@@ -6,10 +6,12 @@ edition = "2021"
 
 [dependencies]
 anyhow = "1"
+embedded-hal-0-2 = { package = "embedded-hal", version = "0.2.7", features = ["unproven"] }
 embedded-svc = "0.24"
 esp-idf-hal = "0.40.1"
 esp-idf-svc = "0.45.0"
 esp-idf-sys = { version = "0.32.1", features = ["binstart"] }
+sgp30 = "0.3"
 shared-bus = { version = "0.2", features = ["std"] }
 veml6030 = { version = "0.1.2" }
 
@@ -17,5 +19,6 @@ veml6030 = { version = "0.1.2" }
 embuild = "0.31.0"
 
 [features]
-#default = ["lux"]
+default = ["lux", "gas"]
 lux = []
+gas = []

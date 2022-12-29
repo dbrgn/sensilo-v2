@@ -1238,13 +1238,24 @@ name = "sensilo"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "embedded-hal 0.2.7",
  "embedded-svc",
  "embuild",
  "esp-idf-hal",
  "esp-idf-svc",
  "esp-idf-sys",
+ "sgp30",
  "shared-bus",
  "veml6030",
+]
+
+[[package]]
+name = "sensirion-i2c"
+version = "0.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "37f8a8f52f850f281f9faebd9dc09d68caa29d6ce1dfd3806686b316258768d6"
+dependencies = [
+ "embedded-hal 0.2.7",
 ]
 
 [[package]]
@@ -1276,6 +1287,18 @@ dependencies = [
  "itoa",
  "ryu",
  "serde",
+]
+
+[[package]]
+name = "sgp30"
+version = "0.3.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2b61c13de51a42068f72dd59c5252b8b479fbed3b52d9bd1365ef18c97bbf4bb"
+dependencies = [
+ "byteorder",
+ "embedded-hal 0.2.7",
+ "num-traits",
+ "sensirion-i2c",
 ]
 
 [[package]]
