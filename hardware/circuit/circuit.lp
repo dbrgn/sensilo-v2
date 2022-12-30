@@ -55,13 +55,6 @@
   (signal 3452d36e-1ce8-4b7c-8e5b-90c2e4929ed8 (net 93ce9c03-b1e3-4ca9-b33b-f1062f8ae73c))
   (signal ad623f98-9e73-49c3-9404-f7cfa99d17cd (net 64408ba7-373d-4162-9782-5b2fbc50ce9d))
  )
- (component 033939e7-3769-456f-b989-883c0edecbdb
-  (lib_component 8076f6be-bfab-4fc1-9772-5d54465dd7e1)
-  (lib_variant f09ad258-595b-4ee9-a1fc-910804a203ae)
-  (lib_device none)
-  (name "GND8") (value "GND")
-  (signal ff161c97-29a5-43aa-a9ae-3ca7a66982ce (net 93ce9c03-b1e3-4ca9-b33b-f1062f8ae73c))
- )
  (component 0ae5611c-4588-424c-b158-b885d4b1e5d9
   (lib_component ef80cd5e-2689-47ee-8888-31d04fc99174)
   (lib_variant a5995314-f535-45d4-8bd8-2d0b8a0dc42a)
@@ -197,13 +190,6 @@
   (signal 41617ae9-3b5d-4379-9676-789174469b98 (net b64f35d9-f667-44da-9b4b-a4a7c8c0a4b3))
   (signal a41c894e-0d61-4fa5-a141-9d92c4e6c339 (net 33b5a07d-2c51-473b-b2d1-02b27d23a5f9))
  )
- (component 6943b415-00be-4097-881e-64d8e033dda5
-  (lib_component 58c3c6cd-11eb-4557-aa3f-d3e05874afde)
-  (lib_variant afb86b45-68ec-47b6-8d96-153d73567228)
-  (lib_device none)
-  (name "VCC11") (value "V_IN")
-  (signal 1d893320-f811-4a79-b64e-cc23d749d394 (net b64f35d9-f667-44da-9b4b-a4a7c8c0a4b3))
- )
  (component 70941c91-770d-43af-8d38-d99182353dda
   (lib_component d167e0e3-6a92-4b76-b013-77b9c230e5f1)
   (lib_variant 8cd7b37f-e5fa-4af5-a8dd-d78830bba3af)
@@ -293,17 +279,6 @@
   (lib_device none)
   (name "GND6") (value "GND")
   (signal ff161c97-29a5-43aa-a9ae-3ca7a66982ce (net 93ce9c03-b1e3-4ca9-b33b-f1062f8ae73c))
- )
- (component b12b3c42-425c-49a3-b604-0ef60389164f
-  (lib_component e7083cef-1638-4cc2-a6c0-66e114f902d9)
-  (lib_variant 93e56e3b-60a9-47f7-b499-aa72db27cb9e)
-  (lib_device adefcceb-514f-460c-aa13-08edb7a012cb)
-  (name "BAT") (value "{{PARTNUMBER or DEVICE}}")
-  (attribute "PARTNUMBER" (type string) (unit none) (value "S2B-XH-A"))
-  (attribute "MANUFACTURER" (type string) (unit none) (value "JST"))
-  (attribute "DIGIKEY" (type string) (unit none) (value "455-2257-ND"))
-  (signal b947df00-b631-4b52-aa01-b7cf15062801 (net 93ce9c03-b1e3-4ca9-b33b-f1062f8ae73c))
-  (signal dc972f6a-7d20-47e5-95e1-07c700638184 (net b64f35d9-f667-44da-9b4b-a4a7c8c0a4b3))
  )
  (component b24f6ff2-63f1-4c8b-9a74-41a799ddf0ff
   (lib_component 2b24b18d-bd95-4fb4-8fe6-bce1d020ead4)
