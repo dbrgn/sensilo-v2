@@ -9,5 +9,6 @@
     },
     "rewrap.wrappingColumn": 100,
     "rust-analyzer.checkOnSave.allTargets": false,
-    "rust-analyzer.cargo.target": "riscv32imc-esp-espidf"
+    "rust-analyzer.cargo.target": "riscv32imc-esp-espidf",
+    "rust-analyzer.server.extraEnv": { "SENSILO_WIFI_SSID": "", "SENSILO_WIFI_PASSWORD": "" }
 }

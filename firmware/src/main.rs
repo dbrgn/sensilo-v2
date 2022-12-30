@@ -24,8 +24,12 @@ mod delay;
 
 use crate::delay::GeneralPurposeDelay;
 
-/// VEML sensor integration time
+// VEML sensor integration time
 const VEML_INTEGRATION_TIME: veml6030::IntegrationTime = veml6030::IntegrationTime::Ms25;
+
+// WiFi credentials
+const SENSILO_WIFI_SSID: &str = env!("SENSILO_WIFI_SSID");
+const SENSILO_WIFI_PASSWORD: &str = env!("SENSILO_WIFI_PASSWORD");
 
 type SharedBuxProxyI2c<'a> = I2cProxy<'a, Mutex<I2cDriver<'a>>>;
 
@@ -214,9 +218,9 @@ fn connect_wifi(
     let mut wifi =
         EspWifi::new(modem, event_loop, Some(nvs)).context("Could not create EspWifi instance")?;
 
-    wifi.set_configuration(&Configuration::Client(ClientConfiguration {
-        ssid: env!("SENSILO_WIFI_SSID").into(),
-        password: env!("SENSILO_WIFI_PASSWORD").into(),
+    wifi.set_configuration(&WifiConfiguration::Client(ClientConfiguration {
+        ssid: SENSILO_WIFI_SSID.into(),
+        password: SENSILO_WIFI_PASSWORD.into(),
         ..Default::default()
     }))
     .unwrap();
