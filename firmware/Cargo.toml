@@ -9,7 +9,7 @@ anyhow = "1"
 embedded-hal-0-2 = { package = "embedded-hal", version = "0.2.7", features = ["unproven"] }
 embedded-svc = "0.24"
 esp-idf-hal = "0.40.1"
-esp-idf-svc = "0.45.0"
+esp-idf-svc = { version = "0.45.0", features = ["experimental"] }
 esp-idf-sys = { version = "0.32.1", features = ["binstart"] }
 shtcx = "0.11"
 sgp30 = "0.3"

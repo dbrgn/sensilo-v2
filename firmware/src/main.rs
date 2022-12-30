@@ -1,8 +1,11 @@
-use std::{io::Write, sync::Mutex};
+use std::{io::Write, sync::Mutex, time::Duration};
 
 use anyhow::Context;
 use embedded_hal_0_2::blocking::delay::{DelayMs, DelayUs};
-use embedded_svc::wifi::{ClientConfiguration, Configuration, Wifi};
+use embedded_svc::{
+    http::{client::Client as HttpClient, Method, Status},
+    wifi::{ClientConfiguration, Configuration as WifiConfiguration, Wifi},
+};
 use esp_idf_hal::{
     delay::FreeRtos,
     i2c::{config::Config as I2cConfig, I2cDriver},
@@ -12,6 +15,7 @@ use esp_idf_hal::{
 };
 use esp_idf_svc::{
     eventloop::{EspEventLoop, EspSystemEventLoop, System},
+    http::client::{Configuration as HttpConfiguration, EspHttpConnection, FollowRedirectsPolicy},
     nvs::{EspDefaultNvsPartition, EspNvsPartition, NvsDefault},
     wifi::EspWifi,
 };
@@ -140,10 +144,43 @@ fn main() -> anyhow::Result<()> {
     println!("  Gas (SGP30): {}", sensors.gas.is_some());
     println!();
 
+    println!("Testing HTTP request...");
+    let mut client = HttpClient::wrap(EspHttpConnection::new(&HttpConfiguration {
+        buffer_size: None,
+        buffer_size_tx: None,
+        timeout: Some(Duration::from_secs(10)),
+        follow_redirects_policy: FollowRedirectsPolicy::FollowGetHead,
+        client_certificate: None,
+        private_key: None,
+        use_global_ca_store: false,
+        crt_bundle_attach: None,
+    })?);
+    let mut response = client
+        .request(
+            Method::Get,
+            "http://ifconfig.net/",
+            &[("accept", "text/plain")],
+        )?
+        .submit()?;
+    println!(
+        "  Response status: {} {}",
+        response.status(),
+        response.status_message().unwrap_or("?")
+    );
+    let (_headers, body) = response.split();
+    let mut buf = [0u8; 2048];
+    let bytes_read = body.read(&mut buf)?;
+    println!("  Read {} bytes", bytes_read);
+    match std::str::from_utf8(&buf[0..bytes_read]) {
+        Ok(body_string) => println!("  Our public IP: {}", body_string.trim()),
+        Err(e) => eprintln!("  Error decoding body: {}", e),
+    };
+    println!();
+
     println!("Starting main loop");
     loop {
         println!("------");
-        let measurements = read_sensors(&mut sensors, &mut delay);
+        let _measurements = read_sensors(&mut sensors, &mut delay);
         delay.delay_ms(1000 - 12);
     }
 }
