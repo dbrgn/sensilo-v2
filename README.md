@@ -27,6 +27,7 @@ system a lot.
 ## Components
 
 - [Firmware](./firmware/)
+- [Hardware](./hardware/)
 
 
 ## License
