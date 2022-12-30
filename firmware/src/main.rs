@@ -1,9 +1,11 @@
-use std::{io::Write, sync::Mutex, time::Duration};
+use std::{sync::Mutex, time::Duration};
 
 use anyhow::Context;
 use embedded_hal_0_2::blocking::delay::{DelayMs, DelayUs};
 use embedded_svc::{
-    http::{client::Client as HttpClient, Method, Status},
+    http::{client::Client as HttpClient, Status},
+    io::Write,
+    utils::io,
     wifi::{ClientConfiguration, Configuration as WifiConfiguration, Wifi},
 };
 use esp_idf_hal::{
@@ -15,7 +17,7 @@ use esp_idf_hal::{
 };
 use esp_idf_svc::{
     eventloop::{EspEventLoop, EspSystemEventLoop, System},
-    http::client::{Configuration as HttpConfiguration, EspHttpConnection, FollowRedirectsPolicy},
+    http::client::{Configuration as HttpConfiguration, EspHttpConnection},
     nvs::{EspDefaultNvsPartition, EspNvsPartition, NvsDefault},
     wifi::EspWifi,
 };
@@ -31,9 +33,21 @@ use crate::delay::GeneralPurposeDelay;
 // VEML sensor integration time
 const VEML_INTEGRATION_TIME: veml6030::IntegrationTime = veml6030::IntegrationTime::Ms25;
 
+// Sensor information
+const SENSILO_NAME: &str = env!("SENSILO_NAME");
+
 // WiFi credentials
 const SENSILO_WIFI_SSID: &str = env!("SENSILO_WIFI_SSID");
 const SENSILO_WIFI_PASSWORD: &str = env!("SENSILO_WIFI_PASSWORD");
+
+// InfluxDB
+const SENSILO_INFLUXDB_HOST: &str = env!("SENSILO_INFLUXDB_HOST");
+const SENSILO_INFLUXDB_ORG: &str = env!("SENSILO_INFLUXDB_ORG");
+const SENSILO_INFLUXDB_BUCKET: &str = env!("SENSILO_INFLUXDB_BUCKET");
+const SENSILO_INFLUXDB_API_TOKEN: &str = env!("SENSILO_INFLUXDB_API_TOKEN");
+
+// Firmware version
+const VERSION: &str = env!("CARGO_PKG_VERSION");
 
 type SharedBuxProxyI2c<'a> = I2cProxy<'a, Mutex<I2cDriver<'a>>>;
 
@@ -46,10 +60,10 @@ struct Sensors<'a> {
 
 #[derive(Default)]
 struct Measurements {
-    /// Temperature in °C
-    temperature: Option<f32>,
-    /// Humidity in %RH
-    humidity: Option<f32>,
+    /// Temperature
+    temperature: Option<shtcx::Temperature>,
+    /// Humidity
+    humidity: Option<shtcx::Humidity>,
     /// Illuminance in Lux
     illuminance: Option<f32>,
     /// CO2 equivalent in PPM
@@ -59,6 +73,7 @@ struct Measurements {
 }
 
 fn flush_stdout() {
+    use std::io::Write;
     let _ = std::io::stdout().flush();
 }
 
@@ -144,43 +159,17 @@ fn main() -> anyhow::Result<()> {
     println!("  Gas (SGP30): {}", sensors.gas.is_some());
     println!();
 
-    println!("Testing HTTP request...");
-    let mut client = HttpClient::wrap(EspHttpConnection::new(&HttpConfiguration {
-        buffer_size: None,
-        buffer_size_tx: None,
-        timeout: Some(Duration::from_secs(10)),
-        follow_redirects_policy: FollowRedirectsPolicy::FollowGetHead,
-        client_certificate: None,
-        private_key: None,
-        use_global_ca_store: false,
-        crt_bundle_attach: None,
-    })?);
-    let mut response = client
-        .request(
-            Method::Get,
-            "http://ifconfig.net/",
-            &[("accept", "text/plain")],
-        )?
-        .submit()?;
-    println!(
-        "  Response status: {} {}",
-        response.status(),
-        response.status_message().unwrap_or("?")
-    );
-    let (_headers, body) = response.split();
-    let mut buf = [0u8; 2048];
-    let bytes_read = body.read(&mut buf)?;
-    println!("  Read {} bytes", bytes_read);
-    match std::str::from_utf8(&buf[0..bytes_read]) {
-        Ok(body_string) => println!("  Our public IP: {}", body_string.trim()),
-        Err(e) => eprintln!("  Error decoding body: {}", e),
-    };
-    println!();
-
     println!("Starting main loop");
+    let mut i = 0usize;
     loop {
-        println!("------");
-        let _measurements = read_sensors(&mut sensors, &mut delay);
+        i = i.wrapping_add(1);
+        println!("--- {} ---", i);
+        let measurements = read_sensors(&mut sensors, &mut delay);
+        if i % 15 == 0 {
+            if let Err(e) = submit_measurements(&measurements, i - 1) {
+                eprintln!("Error: Could not submit measurement: {}", e);
+            }
+        }
         delay.delay_ms(1000 - 12);
     }
 }
@@ -292,8 +281,8 @@ fn read_sensors(sensors: &mut Sensors, delay: &mut GeneralPurposeDelay) -> Measu
             Ok(measurement) => {
                 println!("Temp:  {} °C", measurement.temperature.as_degrees_celsius());
                 println!("Humi:  {} %RH", measurement.humidity.as_percent());
-                measurements.temperature = Some(measurement.temperature.as_degrees_celsius());
-                measurements.humidity = Some(measurement.humidity.as_percent());
+                measurements.temperature = Some(measurement.temperature);
+                measurements.humidity = Some(measurement.humidity);
             }
             Err(e) => eprintln!("Temp/Humi: ERROR: {:?}", e),
         }
@@ -324,4 +313,96 @@ fn read_sensors(sensors: &mut Sensors, delay: &mut GeneralPurposeDelay) -> Measu
     }
 
     measurements
+}
+
+fn submit_measurements(
+    measurements: &Measurements,
+    seconds_since_start: usize,
+) -> anyhow::Result<()> {
+    println!("-> Submitting measurements");
+
+    // Create HTTP(S) client
+    let mut client = HttpClient::wrap(EspHttpConnection::new(&HttpConfiguration {
+        timeout: Some(Duration::from_secs(10)),
+        crt_bundle_attach: Some(esp_idf_sys::esp_crt_bundle_attach), // Needed for HTTPS support
+        ..Default::default()
+    })?);
+
+    // Prepare payload
+    let mut lines = Vec::new();
+    let tags = format!("name={},fw_version={}", SENSILO_NAME, VERSION);
+    if let Some(temp) = measurements.temperature {
+        let val = temp.as_degrees_celsius();
+        lines.push(format!("temperature,{} celsius={:.2}", tags, val));
+    }
+    if let Some(humi) = measurements.humidity {
+        let val = humi.as_percent();
+        lines.push(format!("humidity,{} percent={:.2}", tags, val));
+    }
+    if let Some(lux) = measurements.illuminance {
+        lines.push(format!("illumination,{} lux={:.2}", tags, lux));
+    }
+    if seconds_since_start > 32 {
+        // Note: Give it some time for calibration (>15s)
+        if let Some(co2eq) = measurements.co2eq_ppm {
+            lines.push(format!("co2,sensor_type=mox,{} ppm={}u", tags, co2eq));
+        }
+        if let Some(tvoc) = measurements.tvoc_ppb {
+            lines.push(format!("tvoc,{} ppb={}u", tags, tvoc));
+        }
+    }
+    let payload: String = lines.join("\n").chars().collect();
+    println!("Sending payload:\n{}", &payload);
+
+    // Prepare headers and URL
+    let authorization_header = format!("Token {}", SENSILO_INFLUXDB_API_TOKEN);
+    let content_length_header = format!("{}", payload.len());
+    let headers = [
+        ("authorization", &*authorization_header),
+        ("content-type", "text/plain; charset=utf-8"),
+        ("content-length", &*content_length_header),
+        ("accept", "application/json"),
+        ("connection", "close"),
+    ];
+    let url = format!(
+        "{}/api/v2/write?org={}&bucket={}",
+        SENSILO_INFLUXDB_HOST.trim_end_matches('/'),
+        SENSILO_INFLUXDB_ORG,
+        SENSILO_INFLUXDB_BUCKET,
+    );
+
+    // Send request
+    let mut request = client.post(&url, &headers)?;
+    request.write_all(payload.as_bytes())?;
+    request.flush()?;
+
+    // Read response
+    let mut response = request.submit()?;
+    let status = response.status();
+    let (_headers, mut body) = response.split();
+    let success = status == 204;
+    if success {
+        println!("-> Data sent successfully to InfluxDB!");
+    } else {
+        eprintln!("-> Error: Server returned HTTP {}", status);
+    }
+
+    // Drain body, print it if not successful
+    let mut buf = [0u8; 1024];
+    if !success {
+        let bytes_read = io::try_read_full(&mut body, &mut buf).map_err(|e| e.0)?;
+        println!("  Read {} bytes", bytes_read);
+        match std::str::from_utf8(&buf[0..bytes_read]) {
+            Ok(body_string) => println!(
+                "   Response body (truncated to {} bytes): {}",
+                buf.len(),
+                body_string
+            ),
+            Err(e) => eprintln!("  Error decoding response body: {}", e),
+        };
+    }
+    while body.read(&mut buf)? > 0 {} // Drain the remaining response bytes
+    println!();
+
+    Ok(())
 }

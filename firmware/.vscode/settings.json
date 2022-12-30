@@ -10,5 +10,13 @@
     "rewrap.wrappingColumn": 100,
     "rust-analyzer.checkOnSave.allTargets": false,
     "rust-analyzer.cargo.target": "riscv32imc-esp-espidf",
-    "rust-analyzer.server.extraEnv": { "SENSILO_WIFI_SSID": "", "SENSILO_WIFI_PASSWORD": "" }
+    "rust-analyzer.server.extraEnv": {
+        "SENSILO_NAME": "testsensor",
+        "SENSILO_WIFI_SSID": "",
+        "SENSILO_WIFI_PASSWORD": "",
+        "SENSILO_INFLUXDB_HOST": "https://localhost:6789",
+        "SENSILO_INFLUXDB_ORG": "",
+        "SENSILO_INFLUXDB_BUCKET": "",
+        "SENSILO_INFLUXDB_API_TOKEN": ""
+    }
 }
