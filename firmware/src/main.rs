@@ -232,7 +232,7 @@ fn main() -> anyhow::Result<()> {
         // Wait for a few seconds until the next submission interval.
         //
         // Note: It's important that the mutexes are not locked while sleeping!
-        delay.delay_ms(10 * 1000);
+        delay.delay_ms(30 * 1000);
     }
 }
 
