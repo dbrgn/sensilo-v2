@@ -1,4 +1,7 @@
-use std::{sync::Mutex, time::Duration};
+use std::{
+    sync::{Arc, Mutex},
+    time::Duration,
+};
 
 use anyhow::Context;
 use embedded_hal_0_2::blocking::delay::{DelayMs, DelayUs};
@@ -19,6 +22,7 @@ use esp_idf_svc::{
     eventloop::{EspEventLoop, EspSystemEventLoop, System},
     http::client::{Configuration as HttpConfiguration, EspHttpConnection},
     nvs::{EspDefaultNvsPartition, EspNvsPartition, NvsDefault},
+    timer::EspTaskTimerService,
     wifi::EspWifi,
 };
 use sgp30::Sgp30;
@@ -72,9 +76,11 @@ struct Measurements {
     tvoc_ppb: Option<u16>,
 }
 
-fn flush_stdout() {
-    use std::io::Write;
-    let _ = std::io::stdout().flush();
+impl Measurements {
+    /// Reset measurement values to their defaults
+    fn reset(&mut self) {
+        *self = Self::default();
+    }
 }
 
 fn main() -> anyhow::Result<()> {
@@ -130,16 +136,13 @@ fn main() -> anyhow::Result<()> {
     let wifi = connect_wifi(peripherals.modem, sys_loop, nvs)?;
 
     // Wait for IP assignment from DHCP
-    print!("WiFi connected! Waiting for IP");
-    flush_stdout();
+    println!("WiFi connected! Waiting for IP...");
     loop {
         let ip_info = wifi.sta_netif().get_ip_info().unwrap();
         if ip_info.ip.is_unspecified() {
-            print!(".");
-            flush_stdout();
-            delay.delay_ms(250);
+            delay.delay_ms(100);
         } else {
-            println!("\n  Assigned IP: {}", ip_info.ip);
+            println!("  Assigned IP: {}", ip_info.ip);
             if let Some(dns) = ip_info.dns {
                 println!("  DNS:         {}", dns);
             } else {
@@ -160,17 +163,76 @@ fn main() -> anyhow::Result<()> {
     println!();
 
     println!("Starting main loop");
-    let mut i = 0usize;
+
+    let schedule_gas_sensor_timer = sensors.gas.is_some();
+
+    let sensors = Arc::new(Mutex::new(sensors));
+    let measurements = Arc::new(Mutex::new(Measurements::default()));
+
+    // The SGP30 requires to be called at 1s intervals for the internal algorithm to work. Thus,
+    // schedule a periodic timer task.
+    let mut gas_sensor_timer = None;
+    if schedule_gas_sensor_timer {
+        // Create timer task
+        let timer_sensors = sensors.clone();
+        let timer_measurements = measurements.clone();
+        let mut seconds_since_start = 0usize;
+        let timer = EspTaskTimerService::new()?.timer(move || {
+            seconds_since_start = seconds_since_start.saturating_add(1);
+            let mut s = timer_sensors.lock().expect("Failed to lock sensors mutex");
+            if let Some(ref mut sgp30) = s.gas {
+                match sgp30.measure() {
+                    Ok(measurement) => {
+                        println!(":: CO₂eq: {} PPM", measurement.co2eq_ppm);
+                        println!(":: TVOC:  {} PPB", measurement.tvoc_ppb);
+                        if seconds_since_start > 32 {
+                            // Note: Give sensor some time for initial calibration (>15s)
+                            let mut m = timer_measurements
+                                .lock()
+                                .expect("Failed to lock measurements mutex");
+                            m.co2eq_ppm = Some(measurement.co2eq_ppm);
+                            m.tvoc_ppb = Some(measurement.tvoc_ppb);
+                        }
+                    }
+                    Err(e) => eprintln!("SGP30: ERROR: {:?}", e),
+                }
+            }
+        })?;
+
+        // Schedule timer
+        timer.every(Duration::from_secs(1))?;
+
+        // Prevent timer from being dropped, and thus, being cancelled
+        gas_sensor_timer = Some(timer);
+    }
+    if gas_sensor_timer.is_some() {
+        println!("Scheduled periodic gas sensor task at 1s intervals");
+    }
+
     loop {
-        i = i.wrapping_add(1);
-        println!("--- {} ---", i);
-        let measurements = read_sensors(&mut sensors, &mut delay);
-        if i % 15 == 0 {
-            if let Err(e) = submit_measurements(&measurements, i - 1) {
+        {
+            // Get access to shared data
+            let mut s = sensors.lock().expect("Failed to lock sensors mutex");
+            let mut m = measurements
+                .lock()
+                .expect("Failed to lock measurements mutex");
+
+            // Read sensors
+            read_sensors(&mut s, &mut m, &mut delay);
+
+            // Submit measurements
+            if let Err(e) = submit_measurements(&m) {
                 eprintln!("Error: Could not submit measurement: {}", e);
             }
+
+            // Reset measurements
+            m.reset();
         }
-        delay.delay_ms(1000 - 12);
+
+        // Wait for a few seconds until the next submission interval.
+        //
+        // Note: It's important that the mutexes are not locked while sleeping!
+        delay.delay_ms(10 * 1000);
     }
 }
 
@@ -252,35 +314,40 @@ fn connect_wifi(
     .unwrap();
     wifi.start().context("Could not start WiFi")?;
     wifi.connect().context("Could not connect WiFi")?;
-    print!(
-        "Waiting for station with SSID {}",
+    println!(
+        "Waiting for station with SSID {}...",
         wifi.get_configuration()
             .ok()
             .as_ref()
             .and_then(|conf| conf.as_client_conf_ref().map(|client| &client.ssid))
             .unwrap()
     );
-    flush_stdout();
     while !wifi.is_connected().unwrap() {
-        print!(".");
-        flush_stdout();
-        FreeRtos::delay_ms(250);
+        FreeRtos::delay_ms(100);
     }
     println!();
 
     Ok(wifi)
 }
 
-/// Read sensors, print data and return measurements.
-fn read_sensors(sensors: &mut Sensors, delay: &mut GeneralPurposeDelay) -> Measurements {
-    let mut measurements = Measurements::default();
-
+/// Read sensors, print data and update measurements.
+///
+/// Note: The gas sensor is not being read here, since it needs to be processed at a 1s intervals
+/// inside the periodic timer task!
+fn read_sensors(
+    sensors: &mut Sensors,
+    measurements: &mut Measurements,
+    delay: &mut GeneralPurposeDelay,
+) {
     // Read temp/humi sensor, if present
     if let Some(ref mut shtc3) = sensors.temp_humi {
         match shtc3.measure(shtcx::PowerMode::NormalMode, delay) {
             Ok(measurement) => {
-                println!("Temp:  {} °C", measurement.temperature.as_degrees_celsius());
-                println!("Humi:  {} %RH", measurement.humidity.as_percent());
+                println!(
+                    ":: Temp:  {} °C",
+                    measurement.temperature.as_degrees_celsius()
+                );
+                println!(":: Humi:  {} %RH", measurement.humidity.as_percent());
                 measurements.temperature = Some(measurement.temperature);
                 measurements.humidity = Some(measurement.humidity);
             }
@@ -292,33 +359,15 @@ fn read_sensors(sensors: &mut Sensors, delay: &mut GeneralPurposeDelay) -> Measu
     if let Some(ref mut veml) = sensors.lux {
         match veml.read_lux() {
             Ok(lux) => {
-                println!("Lux:   {}", lux);
+                println!(":: Lux:   {}", lux);
                 measurements.illuminance = Some(lux);
             }
             Err(e) => eprintln!("Lux: ERROR: {:?}", e),
         }
     }
-
-    // Read gas sensor, if present
-    if let Some(ref mut sgp30) = sensors.gas {
-        match sgp30.measure() {
-            Ok(measurement) => {
-                println!("CO₂eq: {} PPM", measurement.co2eq_ppm);
-                println!("TVOC:  {} PPB", measurement.tvoc_ppb);
-                measurements.co2eq_ppm = Some(measurement.co2eq_ppm);
-                measurements.tvoc_ppb = Some(measurement.tvoc_ppb);
-            }
-            Err(e) => eprintln!("Gas: ERROR: {:?}", e),
-        }
-    }
-
-    measurements
 }
 
-fn submit_measurements(
-    measurements: &Measurements,
-    seconds_since_start: usize,
-) -> anyhow::Result<()> {
+fn submit_measurements(measurements: &Measurements) -> anyhow::Result<()> {
     println!("-> Submitting measurements");
 
     // Create HTTP(S) client
@@ -342,14 +391,11 @@ fn submit_measurements(
     if let Some(lux) = measurements.illuminance {
         lines.push(format!("illumination,{} lux={:.2}", tags, lux));
     }
-    if seconds_since_start > 32 {
-        // Note: Give it some time for calibration (>15s)
-        if let Some(co2eq) = measurements.co2eq_ppm {
-            lines.push(format!("co2,sensor_type=mox,{} ppm={}u", tags, co2eq));
-        }
-        if let Some(tvoc) = measurements.tvoc_ppb {
-            lines.push(format!("tvoc,{} ppb={}u", tags, tvoc));
-        }
+    if let Some(co2eq) = measurements.co2eq_ppm {
+        lines.push(format!("co2,sensor_type=mox,{} ppm={}u", tags, co2eq));
+    }
+    if let Some(tvoc) = measurements.tvoc_ppb {
+        lines.push(format!("tvoc,{} ppb={}u", tags, tvoc));
     }
     let payload: String = lines.join("\n").chars().collect();
     println!("Sending payload:\n{}", &payload);
