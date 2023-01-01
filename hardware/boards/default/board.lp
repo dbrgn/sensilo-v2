@@ -749,7 +749,7 @@
   )
  )
  (netsegment 7e523d82-c7ac-4b30-9b31-9620f4112cbc
-  (net 33b5a07d-2c51-473b-b2d1-02b27d23a5f9)
+  (net fe1fb395-27c7-41e9-8870-eb661b2b0856)
   (via 7e056dbb-b953-4225-9e5a-4511b3d052f2
    (position 5.715 3.175) (size 0.7) (drill 0.3) (shape round)
   )
@@ -827,7 +827,7 @@
   )
  )
  (netsegment 978bf088-dfdf-40fa-9e5e-9e6e4db95d24
-  (net 64408ba7-373d-4162-9782-5b2fbc50ce9d)
+  (net 7b2bd847-8944-4007-b162-b01527f280c9)
   (junction 294c38bc-5d50-4fe3-b120-7f4fe6790948 (position 9.52 11.435))
   (junction 3ea8fbf7-ad8a-4993-9eab-678352001ceb (position 9.525 11.43))
   (junction b5f0d21b-9af5-4822-a0fe-1b46579ea0c5 (position 9.89 11.065))
