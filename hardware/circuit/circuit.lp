@@ -420,7 +420,7 @@
   (lib_component ab344e7c-b740-4f2a-b21a-f7b1c433f990)
   (lib_variant ee92375f-b17d-4d79-84d9-4df2c4aed57a)
   (lib_device 9ac8e65e-83a7-42c7-9ebe-8017995828f3)
-  (name "J4") (value "JLink Power")
+  (name "J4") (value "JLink Pwr")
   (attribute "MANUFACTURER" (type string) (unit none) (value "Adam Tech"))
   (attribute "PARTNUMBER" (type string) (unit none) (value "PH1-02-UA"))
   (attribute "DIGIKEY" (type string) (unit none) (value "2057-PH1-02-UA-ND"))
