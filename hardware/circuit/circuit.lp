@@ -204,6 +204,13 @@
   (name "VCC6") (value "3V3")
   (signal 1d893320-f811-4a79-b64e-cc23d749d394 (net fde51a5f-2a7c-4c9e-8a77-cf450deec8eb))
  )
+ (component 5a6fe9a8-fbdc-43ad-83b2-e48159ba07e0
+  (lib_component 8076f6be-bfab-4fc1-9772-5d54465dd7e1)
+  (lib_variant f09ad258-595b-4ee9-a1fc-910804a203ae)
+  (lib_device none)
+  (name "GND2") (value "GND")
+  (signal ff161c97-29a5-43aa-a9ae-3ca7a66982ce (net 93ce9c03-b1e3-4ca9-b33b-f1062f8ae73c))
+ )
  (component 5c4c781d-15cb-4c2e-893b-6899f8bf3d24
   (lib_component 58c3c6cd-11eb-4557-aa3f-d3e05874afde)
   (lib_variant afb86b45-68ec-47b6-8d96-153d73567228)
@@ -245,6 +252,13 @@
   (signal a5b37c07-bbd8-4767-b0a2-267daa119ed7 (net 46dc1a75-81a6-4ae8-a6cd-24ff74d5c5c0))
   (signal bbdffe3e-81b3-425c-a621-d08c2bc33bb0 (net 93ce9c03-b1e3-4ca9-b33b-f1062f8ae73c))
   (signal c768c2a8-0c10-475e-8ee7-1f3f65c8cab2 (net 035c2839-e68a-4e02-b301-837bb065135d))
+ )
+ (component 7ac325ce-9b0e-4c52-ad82-ec5d00e00057
+  (lib_component 58c3c6cd-11eb-4557-aa3f-d3e05874afde)
+  (lib_variant afb86b45-68ec-47b6-8d96-153d73567228)
+  (lib_device none)
+  (name "VCC3") (value "3V3")
+  (signal 1d893320-f811-4a79-b64e-cc23d749d394 (net fde51a5f-2a7c-4c9e-8a77-cf450deec8eb))
  )
  (component 7af40a17-57f2-4b2c-8ed5-7d9f50e400a4
   (lib_component ce2ea95f-dbd2-432e-a6a6-6c20043f6d7e)
@@ -307,6 +321,16 @@
   (lib_device none)
   (name "GND11") (value "GND")
   (signal ff161c97-29a5-43aa-a9ae-3ca7a66982ce (net 93ce9c03-b1e3-4ca9-b33b-f1062f8ae73c))
+ )
+ (component 9d0d3264-8d27-4629-865d-ff90e1a49b1a
+  (lib_component 0168c0f6-2f59-4d79-a1b6-3e687b435330)
+  (lib_variant 7771fd98-d85a-4bb8-bbb7-bd35821be51f)
+  (lib_device a4ab071b-754c-488d-a94f-4cc6b570f765)
+  (name "U4") (value "{{PARTNUMBER or DEVICE or COMPONENT}}")
+  (signal 31b67bfd-5b8f-42c8-a072-48073e1bf629 (net fde51a5f-2a7c-4c9e-8a77-cf450deec8eb))
+  (signal 372986c0-4a39-4c16-b135-2457823ee4ae (net 93ce9c03-b1e3-4ca9-b33b-f1062f8ae73c))
+  (signal 61cc3f40-25f9-4a0d-b64e-723f8e939cfd (net 035c2839-e68a-4e02-b301-837bb065135d))
+  (signal ae937403-19c5-4913-bace-e700d8033163 (net 46dc1a75-81a6-4ae8-a6cd-24ff74d5c5c0))
  )
  (component a6656adc-d9b3-456c-9ac9-7000a20ae98c
   (lib_component 58c3c6cd-11eb-4557-aa3f-d3e05874afde)
@@ -514,6 +538,18 @@
   (attribute "PARTNUMBER" (type string) (unit none) (value "RC0805JR-075K1L"))
   (signal 3452d36e-1ce8-4b7c-8e5b-90c2e4929ed8 (net 93ce9c03-b1e3-4ca9-b33b-f1062f8ae73c))
   (signal ad623f98-9e73-49c3-9404-f7cfa99d17cd (net fe1fb395-27c7-41e9-8870-eb661b2b0856))
+ )
+ (component f9a7a7fc-f405-42fc-a433-381c01233730
+  (lib_component d167e0e3-6a92-4b76-b013-77b9c230e5f1)
+  (lib_variant 8cd7b37f-e5fa-4af5-a8dd-d78830bba3af)
+  (lib_device c139e505-592b-46ba-bdf2-acb7383ea0cd)
+  (name "C6") (value "{{CAPACITANCE}}")
+  (attribute "CAPACITANCE" (type capacitance) (unit nanofarad) (value "100"))
+  (attribute "PARTNUMBER" (type string) (unit none) (value "CL21B104KACNNNC"))
+  (attribute "DIGIKEY" (type string) (unit none) (value "1276-1099-1-ND"))
+  (attribute "MANUFACTURER" (type string) (unit none) (value "Samsung"))
+  (signal 1c1c7abc-7b40-4f92-b533-f65604644db7 (net 93ce9c03-b1e3-4ca9-b33b-f1062f8ae73c))
+  (signal 6d776f4d-2a7c-4128-a98a-dbb1dd861411 (net fde51a5f-2a7c-4c9e-8a77-cf450deec8eb))
  )
 
 )
