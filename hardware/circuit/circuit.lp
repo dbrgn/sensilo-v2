@@ -501,7 +501,7 @@
   (signal 10e502b6-6d62-41be-b689-e80b52818e7c (net 93ce9c03-b1e3-4ca9-b33b-f1062f8ae73c))
   (signal 22040446-013f-4a60-afb4-7dc43be4f8b8 (net none))
   (signal 29f64872-9c3e-4cdf-8fc0-f871b521156c (net none))
-  (signal 2a546bac-4cfb-4900-9221-3dc284e3dd4c (net none))
+  (signal 2a546bac-4cfb-4900-9221-3dc284e3dd4c (net 4f87416d-6d87-403d-a98a-10e752e9191f))
   (signal 3727ea0d-9de8-434a-843c-44b95874faae (net 1bfc67da-4721-4b85-a19d-5e23e7d2d079))
   (signal 47778558-b543-44a8-ad32-e697fc3a9cbd (net a1f20354-6b17-4521-bc6b-4e941b189970))
   (signal 5391c6d1-7f81-4565-b70d-742c682a5f67 (net 035c2839-e68a-4e02-b301-837bb065135d))
