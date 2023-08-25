@@ -1,258 +1,493 @@
 (librepcb_schematic 54c1aed6-8256-467d-a7da-b674046a8c8d
  (name "Main")
- (grid (type lines) (interval 2.54) (unit millimeters))
-
+ (grid (interval 2.54) (unit millimeters))
  (symbol 0f097989-4f02-4a7d-94a1-1020da35c91d
   (component 9d0d3264-8d27-4629-865d-ff90e1a49b1a)
   (lib_gate 29f58a3c-7e1c-484c-b71c-ac5347a796f5)
   (position 111.76 86.36) (rotation 0.0) (mirror false)
+  (text 224b7b6f-aa29-4c41-984b-4027a1568820 (layer sym_names) (value "{{NAME}}")
+   (align left bottom) (height 2.54) (position 104.14 91.44) (rotation 0.0)
+  )
+  (text 85ee0c56-700a-4df6-b482-a2e932707aef (layer sym_values) (value "{{VALUE}}")
+   (align left top) (height 2.54) (position 104.14 81.28) (rotation 0.0)
+  )
  )
  (symbol 0feca889-920b-4878-91ab-6fa42f7b567e
   (component c579263b-88d5-4c53-949c-29e85eef73c9)
   (lib_gate 2fec251a-42a3-4136-8df5-7f286c2e7372)
   (position 111.76 132.08) (rotation 0.0) (mirror false)
+  (text 97d6f51c-ee9a-460d-ac9f-275c460a5693 (layer sym_values) (value "{{VALUE}}")
+   (align left top) (height 2.54) (position 101.6 127.0) (rotation 0.0)
+  )
+  (text c8b1b636-4223-4709-9b2c-261e93aef442 (layer sym_names) (value "{{NAME}}")
+   (align left bottom) (height 2.54) (position 101.6 137.16) (rotation 0.0)
+  )
  )
  (symbol 1f33ba5e-5f33-4694-8302-6487fac23b26
   (component bab8055d-bbc0-4ac4-aa49-2c21c4a45eec)
   (lib_gate 7d7c6f2e-ad22-4eb6-9e4f-0c6c872983b5)
   (position 111.76 154.94) (rotation 0.0) (mirror false)
+  (text 04c4df3c-f1fc-49a4-870a-7464e3869229 (layer sym_values) (value "{{VALUE}}")
+   (align left top) (height 2.54) (position 104.14 149.86) (rotation 0.0)
+  )
+  (text 4ef6f788-bf79-4e58-90e0-60303f2f3cdd (layer sym_names) (value "{{NAME}}")
+   (align left bottom) (height 2.54) (position 104.14 160.02) (rotation 0.0)
+  )
  )
  (symbol 1f77780d-71f3-4553-99f8-3fb51435f733
   (component 60c74eba-be17-4974-a860-be55f6d3c15b)
   (lib_gate 09b6d6c4-2d37-432f-9471-a317aad9a499)
   (position 38.1 27.94) (rotation 0.0) (mirror false)
+  (text 15577fff-01b3-45ca-b5b1-37bada817ff4 (layer sym_values) (value "{{VALUE}}")
+   (align center bottom) (height 2.54) (position 38.1 27.94) (rotation 0.0)
+  )
  )
  (symbol 242364c2-3200-4357-ae2f-0e48f34af2bd
   (component 34f50de8-3714-4f48-a34e-2d78c82d6e0b)
   (lib_gate 09b6d6c4-2d37-432f-9471-a317aad9a499)
   (position 218.44 99.06) (rotation 0.0) (mirror false)
+  (text 15577fff-01b3-45ca-b5b1-37bada817ff4 (layer sym_values) (value "{{VALUE}}")
+   (align center bottom) (height 2.54) (position 218.44 99.06) (rotation 0.0)
+  )
  )
  (symbol 27350c13-16ab-4002-a342-eae5b3c6a5c5
   (component 02b1d19d-a158-41a8-8eb5-67719c354b94)
   (lib_gate 5988c66a-f507-487e-9b40-486502e8c9bd)
   (position 17.78 53.34) (rotation 90.0) (mirror false)
+  (text bab382bd-43f9-4a5e-ab62-6af84bd669f8 (layer sym_names) (value "{{NAME}}")
+   (align left bottom) (height 2.54) (position 16.764 50.26) (rotation 90.0)
+  )
+  (text c7fc8f16-1080-48e4-a232-7deb0dd96624 (layer sym_values) (value "{{VALUE}}")
+   (align left top) (height 2.54) (position 18.796 50.26) (rotation 90.0)
+  )
  )
  (symbol 2a890d27-42c6-4d89-8b7d-273c20b16f8f
   (component e3788b2c-93a0-47cd-9d51-aa7ce4760924)
   (lib_gate 0539fd52-890f-48af-97a9-bacfb79c9475)
   (position 22.86 78.74) (rotation 0.0) (mirror false)
+  (text 5ec17485-716e-4eb9-8bbf-273444155632 (layer sym_values) (value "{{VALUE}}")
+   (align center top) (height 2.54) (position 22.86 78.74) (rotation 0.0)
+  )
  )
  (symbol 3088c35d-2fcf-4b55-9abd-5bee3a64a207
   (component 3856fbed-cef0-45ad-bafd-9ff8205aea1f)
   (lib_gate 09b6d6c4-2d37-432f-9471-a317aad9a499)
   (position 83.82 27.94) (rotation 0.0) (mirror false)
+  (text 15577fff-01b3-45ca-b5b1-37bada817ff4 (layer sym_values) (value "{{VALUE}}")
+   (align center bottom) (height 2.54) (position 83.82 27.94) (rotation 0.0)
+  )
  )
  (symbol 3b62adee-3df6-4839-bd41-b392f46fcf0b
   (component c88a08dc-b0b9-4211-9753-86de2cc98fe1)
   (lib_gate f19f2c3a-d948-4b53-b30f-25cfbfe47b7f)
   (position 111.76 109.22) (rotation 0.0) (mirror false)
+  (text 0c20b0b0-2aa4-4311-a860-be2975467139 (layer sym_names) (value "{{NAME}}")
+   (align left bottom) (height 2.54) (position 104.14 114.3) (rotation 0.0)
+  )
+  (text 74314552-4616-4b85-b7de-842c6c5fb674 (layer sym_values) (value "{{VALUE}}")
+   (align left top) (height 2.54) (position 104.14 104.14) (rotation 0.0)
+  )
  )
  (symbol 3d07babb-a3d0-4585-bd9c-24b60b98f3b4
   (component 378d611b-cfd0-4394-8b23-b7d97dd1920e)
   (lib_gate 0539fd52-890f-48af-97a9-bacfb79c9475)
   (position 25.4 43.18) (rotation 0.0) (mirror false)
+  (text 5ec17485-716e-4eb9-8bbf-273444155632 (layer sym_values) (value "{{VALUE}}")
+   (align center top) (height 2.54) (position 25.4 43.18) (rotation 0.0)
+  )
  )
  (symbol 4acb2e2e-f17c-4aeb-8dc5-86b8d46f65f2
   (component 5c4c781d-15cb-4c2e-893b-6899f8bf3d24)
   (lib_gate 09b6d6c4-2d37-432f-9471-a317aad9a499)
   (position 25.4 91.44) (rotation 0.0) (mirror false)
+  (text 15577fff-01b3-45ca-b5b1-37bada817ff4 (layer sym_values) (value "{{VALUE}}")
+   (align center bottom) (height 2.54) (position 25.4 91.44) (rotation 0.0)
+  )
  )
  (symbol 4d5a7bc8-64ad-4a1c-8ad4-2682de0e1b93
   (component 94cd2e75-3109-42bf-bc17-cc16392a8863)
   (lib_gate 0539fd52-890f-48af-97a9-bacfb79c9475)
   (position 193.04 35.56) (rotation 0.0) (mirror false)
+  (text 5ec17485-716e-4eb9-8bbf-273444155632 (layer sym_values) (value "{{VALUE}}")
+   (align center top) (height 2.54) (position 193.04 35.56) (rotation 0.0)
+  )
  )
  (symbol 4dbd2051-382d-48db-bb6b-ad691ae65ab0
   (component 557a5c5f-2953-4ee0-8f21-92737d69d4cf)
   (lib_gate 42989503-2795-4892-9d83-b919cd7dad76)
   (position 78.74 17.78) (rotation 0.0) (mirror false)
+  (text 6ac6ad4c-da41-4007-a7c4-b7bbbc3c1ed4 (layer sym_values) (value "{{VALUE}}")
+   (align left top) (height 2.54) (position 81.28 17.78) (rotation 0.0)
+  )
+  (text d388bfc1-774c-4a8e-84a6-fa8a6df43f29 (layer sym_names) (value "{{NAME}}")
+   (align left bottom) (height 2.54) (position 81.28 17.78) (rotation 0.0)
+  )
  )
  (symbol 54d94967-9d28-414d-8da8-e8e697eb6cdb
   (component 70941c91-770d-43af-8d38-d99182353dda)
   (lib_gate 42989503-2795-4892-9d83-b919cd7dad76)
   (position 43.18 17.78) (rotation 0.0) (mirror false)
+  (text 6ac6ad4c-da41-4007-a7c4-b7bbbc3c1ed4 (layer sym_values) (value "{{VALUE}}")
+   (align left top) (height 2.54) (position 45.72 17.78) (rotation 0.0)
+  )
+  (text d388bfc1-774c-4a8e-84a6-fa8a6df43f29 (layer sym_names) (value "{{NAME}}")
+   (align left bottom) (height 2.54) (position 45.72 17.78) (rotation 0.0)
+  )
  )
  (symbol 5c15d12a-da4d-41b0-93d5-c2adee8c395b
   (component 7af40a17-57f2-4b2c-8ed5-7d9f50e400a4)
   (lib_gate bdacd02e-5654-4c1c-89a8-2b1804016a6a)
   (position 236.22 119.38) (rotation 0.0) (mirror false)
+  (text d1b1c57a-5e55-4ec6-811d-51d2e75eaa90 (layer sym_names) (value "{{NAME}}")
+   (align center bottom) (height 2.54) (position 236.22 124.46) (rotation 0.0)
+  )
+  (text f47c9ef2-4b1a-4302-a33a-42a98d74bcb2 (layer sym_values) (value "{{VALUE}}")
+   (align center top) (height 2.54) (position 236.22 114.3) (rotation 0.0)
+  )
  )
  (symbol 6577f799-808a-4f47-b859-df5e145a70a4
   (component f9a7a7fc-f405-42fc-a433-381c01233730)
   (lib_gate 42989503-2795-4892-9d83-b919cd7dad76)
   (position 93.98 86.36) (rotation 180.0) (mirror false)
+  (text 6ac6ad4c-da41-4007-a7c4-b7bbbc3c1ed4 (layer sym_values) (value "{{VALUE}}")
+   (align left top) (height 2.54) (position 91.44 86.36) (rotation 180.0)
+  )
+  (text d388bfc1-774c-4a8e-84a6-fa8a6df43f29 (layer sym_names) (value "{{NAME}}")
+   (align left bottom) (height 2.54) (position 91.44 86.36) (rotation 180.0)
+  )
  )
  (symbol 67707abc-db05-4a4d-8355-463bfdd715fa
   (component 7ac325ce-9b0e-4c52-ad82-ec5d00e00057)
   (lib_gate 09b6d6c4-2d37-432f-9471-a317aad9a499)
   (position 93.98 93.98) (rotation 0.0) (mirror false)
+  (text 15577fff-01b3-45ca-b5b1-37bada817ff4 (layer sym_values) (value "{{VALUE}}")
+   (align center bottom) (height 2.54) (position 93.98 93.98) (rotation 0.0)
+  )
  )
  (symbol 6eb27551-d58c-4e04-9fa2-7aa1cdd55e11
   (component 748070d6-ffb7-473b-926c-1ff4dcf33752)
   (lib_gate cbf9241b-bbe2-41ce-bb65-ba002b3c86fa)
   (position 236.22 93.98) (rotation 0.0) (mirror false)
+  (text 50651ad9-c8e0-475d-abdc-99330a8617a7 (layer sym_values) (value "{{VALUE}}")
+   (align center top) (height 2.54) (position 236.22 86.36) (rotation 0.0)
+  )
+  (text aaa525cc-0a48-4eb9-9e6f-390fe0e95f86 (layer sym_names) (value "{{NAME}}")
+   (align center bottom) (height 2.54) (position 236.22 99.06) (rotation 0.0)
+  )
  )
  (symbol 6f53f8e7-63d7-494b-9719-e0cddb2cc1ba
   (component a6656adc-d9b3-456c-9ac9-7000a20ae98c)
   (lib_gate 09b6d6c4-2d37-432f-9471-a317aad9a499)
   (position 7.62 162.56) (rotation 0.0) (mirror false)
+  (text 15577fff-01b3-45ca-b5b1-37bada817ff4 (layer sym_values) (value "{{VALUE}}")
+   (align center bottom) (height 2.54) (position 7.62 162.56) (rotation 0.0)
+  )
  )
  (symbol 876eb2b3-db3a-4c30-a875-3e1ebab3299b
   (component de95664c-a719-4614-986e-4bd101a497a9)
   (lib_gate 09b6d6c4-2d37-432f-9471-a317aad9a499)
   (position 93.98 116.84) (rotation 0.0) (mirror false)
+  (text 15577fff-01b3-45ca-b5b1-37bada817ff4 (layer sym_values) (value "{{VALUE}}")
+   (align center bottom) (height 2.54) (position 93.98 116.84) (rotation 0.0)
+  )
  )
  (symbol 89135449-4e51-4872-86e7-4547466c0f73
   (component 0ae5611c-4588-424c-b158-b885d4b1e5d9)
   (lib_gate 5988c66a-f507-487e-9b40-486502e8c9bd)
   (position 203.2 93.98) (rotation 0.0) (mirror false)
+  (text bab382bd-43f9-4a5e-ab62-6af84bd669f8 (layer sym_names) (value "{{NAME}}")
+   (align left bottom) (height 2.54) (position 200.12 94.996) (rotation 0.0)
+  )
+  (text c7fc8f16-1080-48e4-a232-7deb0dd96624 (layer sym_values) (value "{{VALUE}}")
+   (align left top) (height 2.54) (position 200.12 92.964) (rotation 0.0)
+  )
  )
  (symbol 8d4c610f-69e3-456d-9e0e-75b17c507b44
   (component cffc6e55-c291-40b1-8590-1bb8b311d314)
   (lib_gate 0a6a9cf7-5baf-4969-b587-337dc06e40fb)
   (position 63.5 20.32) (rotation 0.0) (mirror false)
+  (text 224b7b6f-aa29-4c41-984b-4027a1568820 (layer sym_names) (value "{{NAME}}")
+   (align left bottom) (height 2.54) (position 55.88 25.4) (rotation 0.0)
+  )
+  (text 85ee0c56-700a-4df6-b482-a2e932707aef (layer sym_values) (value "{{VALUE}}")
+   (align left top) (height 2.54) (position 55.88 15.24) (rotation 0.0)
+  )
  )
  (symbol 8e96cec6-472c-46a4-81c9-e6c802446509
   (component b7952ed9-f333-42da-8b24-396f52a20ace)
   (lib_gate 09b6d6c4-2d37-432f-9471-a317aad9a499)
   (position 93.98 139.7) (rotation 0.0) (mirror false)
+  (text 15577fff-01b3-45ca-b5b1-37bada817ff4 (layer sym_values) (value "{{VALUE}}")
+   (align center bottom) (height 2.54) (position 93.98 139.7) (rotation 0.0)
+  )
  )
  (symbol 93d8c31d-f2c2-4745-9dfc-ce784f4e0ec5
   (component 5a6fe9a8-fbdc-43ad-83b2-e48159ba07e0)
   (lib_gate 0539fd52-890f-48af-97a9-bacfb79c9475)
   (position 93.98 78.74) (rotation 0.0) (mirror false)
+  (text 5ec17485-716e-4eb9-8bbf-273444155632 (layer sym_values) (value "{{VALUE}}")
+   (align center top) (height 2.54) (position 93.98 78.74) (rotation 0.0)
+  )
  )
  (symbol 9613c5c7-6633-4c08-8c07-6c26252f4271
   (component ad2c457c-3596-4912-9e33-3f631e6162a8)
   (lib_gate 0539fd52-890f-48af-97a9-bacfb79c9475)
   (position 43.18 7.62) (rotation 0.0) (mirror false)
+  (text 5ec17485-716e-4eb9-8bbf-273444155632 (layer sym_values) (value "{{VALUE}}")
+   (align center top) (height 2.54) (position 43.18 7.62) (rotation 0.0)
+  )
  )
  (symbol 982981e3-f4df-4e56-8e33-4ad6c203f004
   (component bff109a8-b842-4f51-89b0-b4586354deda)
   (lib_gate 23f3bc73-5f17-44e3-ac44-2bc61951f32c)
   (position 236.22 48.26) (rotation 0.0) (mirror false)
+  (text 39585059-7a8e-4234-9553-5ee5a4149fc0 (layer sym_names) (value "{{NAME}}")
+   (align center bottom) (height 2.54) (position 236.22 50.8) (rotation 0.0)
+  )
+  (text efb53f3c-91c3-4d77-acc3-7b54c3acf29f (layer sym_values) (value "{{VALUE}}")
+   (align center top) (height 2.54) (position 236.22 43.18) (rotation 0.0)
+  )
  )
  (symbol 9ad73eb0-31ad-4979-bfd2-ab2a2ce16d64
   (component 7c8f41d1-9025-4c8f-8a81-9c7fc1d995bc)
   (lib_gate 0539fd52-890f-48af-97a9-bacfb79c9475)
   (position 22.86 139.7) (rotation 0.0) (mirror false)
+  (text 5ec17485-716e-4eb9-8bbf-273444155632 (layer sym_values) (value "{{VALUE}}")
+   (align center top) (height 2.54) (position 22.86 139.7) (rotation 0.0)
+  )
  )
  (symbol a1c899b8-891e-4ca7-82c5-53ba1fcc2352
   (component 864a0497-0f39-4bbb-9dc7-55d538dd4b22)
   (lib_gate 1a4367aa-0e15-476a-a49e-6822a3fa0fd3)
   (position 45.72 73.66) (rotation 0.0) (mirror false)
+  (text 1b67dee0-b2eb-4506-9454-b5c70f7beb21 (layer sym_names) (value "{{NAME}}")
+   (align left bottom) (height 2.54) (position 35.56 88.9) (rotation 0.0)
+  )
+  (text a37c4f89-2fca-401f-ad12-ab77f820d3a8 (layer sym_values) (value "{{VALUE}}")
+   (align left top) (height 2.54) (position 35.56 58.42) (rotation 0.0)
+  )
  )
  (symbol a35af6ea-305b-448d-90c4-0e1bc7b94de0
   (component b24f6ff2-63f1-4c8b-9a74-41a799ddf0ff)
   (lib_gate 80e56299-8f8c-4613-a559-1fba31f01411)
   (position 172.72 157.48) (rotation 90.0) (mirror false)
+  (text 7c355ea2-c905-48b8-a3d8-8d61dc326b0f (layer sym_values) (value "{{VALUE}}")
+   (align left top) (height 2.54) (position 172.72 159.18) (rotation 90.0)
+  )
+  (text ce7c061a-53df-40ad-b553-ffa7f97a2cf2 (layer sym_names) (value "{{NAME}}")
+   (align left bottom) (height 2.54) (position 172.72 159.18) (rotation 90.0)
+  )
  )
  (symbol af7e4031-2bfa-4aba-8974-d8e793037014
   (component b735c578-a9d1-4089-851f-8161c632a43a)
   (lib_gate 5988c66a-f507-487e-9b40-486502e8c9bd)
   (position 203.2 86.36) (rotation 0.0) (mirror false)
+  (text bab382bd-43f9-4a5e-ab62-6af84bd669f8 (layer sym_names) (value "{{NAME}}")
+   (align left bottom) (height 2.54) (position 200.12 87.376) (rotation 0.0)
+  )
+  (text c7fc8f16-1080-48e4-a232-7deb0dd96624 (layer sym_values) (value "{{VALUE}}")
+   (align left top) (height 2.54) (position 200.12 85.344) (rotation 0.0)
+  )
  )
  (symbol b25f5551-c181-4c6d-bb77-dc1ab2d0a7cd
   (component 5c80be6c-2008-4859-840f-03a9c3b2a6e3)
   (lib_gate 2ce9d0aa-7afb-4196-8425-46c4e1c26313)
   (position 139.7 7.62) (rotation 0.0) (mirror false)
+  (text d329f6c2-ff02-4751-b6cf-94804b2eadd3 (layer sym_outlines) (value "{{VALUE}}")
+   (align left center) (height 4.0) (position 143.51 7.62) (rotation 0.0)
+  )
  )
  (symbol bba8585e-259b-4e84-9db8-697164805f6c
   (component 036791fa-2d26-458f-89ad-13dbe5cb2fbf)
   (lib_gate 0539fd52-890f-48af-97a9-bacfb79c9475)
   (position 60.96 71.12) (rotation 0.0) (mirror false)
+  (text 5ec17485-716e-4eb9-8bbf-273444155632 (layer sym_values) (value "{{VALUE}}")
+   (align center top) (height 2.54) (position 60.96 71.12) (rotation 0.0)
+  )
  )
  (symbol bc60fe30-fc66-47e0-bfc5-5f7304b9a9b2
   (component de359a8a-5880-4ab2-99d6-cccbdada36be)
   (lib_gate b4bb256d-5479-41ac-9e18-0da2a35194d8)
   (position 38.1 139.7) (rotation 0.0) (mirror false)
+  (text 28da6f6f-e0ff-4934-b532-647fe17f1138 (layer sym_values) (value "{{VALUE}}")
+   (align left top) (height 2.5) (position 27.94 119.38) (rotation 0.0)
+  )
+  (text 7437e7be-e120-40bb-9673-c24651005927 (layer sym_names) (value "{{NAME}}")
+   (align left bottom) (height 2.5) (position 27.94 160.02) (rotation 0.0)
+  )
  )
  (symbol bca4e61f-e579-42b3-bc62-6e1ea235cfef
   (component 30ddd90b-28f1-486b-b44e-df4748818093)
   (lib_gate 42989503-2795-4892-9d83-b919cd7dad76)
   (position 60.96 78.74) (rotation 0.0) (mirror false)
+  (text 6ac6ad4c-da41-4007-a7c4-b7bbbc3c1ed4 (layer sym_values) (value "{{VALUE}}")
+   (align left top) (height 2.54) (position 63.5 78.74) (rotation 0.0)
+  )
+  (text d388bfc1-774c-4a8e-84a6-fa8a6df43f29 (layer sym_names) (value "{{NAME}}")
+   (align left bottom) (height 2.54) (position 63.5 78.74) (rotation 0.0)
+  )
  )
  (symbol bf1f5779-40f6-4807-89a7-95a98ca88a5a
   (component 4cfee2f3-c0df-41a8-a2c7-62a24a0e0b1d)
   (lib_gate 0539fd52-890f-48af-97a9-bacfb79c9475)
   (position 68.58 71.12) (rotation 0.0) (mirror false)
+  (text 5ec17485-716e-4eb9-8bbf-273444155632 (layer sym_values) (value "{{VALUE}}")
+   (align center top) (height 2.54) (position 68.58 71.12) (rotation 0.0)
+  )
  )
  (symbol bf21c373-46b3-4f37-920b-036e8d925da7
   (component 8b57686a-24ce-49b7-a69f-fd2ffc03138c)
   (lib_gate 09b6d6c4-2d37-432f-9471-a317aad9a499)
   (position 93.98 162.56) (rotation 0.0) (mirror false)
+  (text 15577fff-01b3-45ca-b5b1-37bada817ff4 (layer sym_values) (value "{{VALUE}}")
+   (align center bottom) (height 2.54) (position 93.98 162.56) (rotation 0.0)
+  )
  )
  (symbol bf89809f-a9d1-4057-b732-be2d5ca4fefc
   (component 42bdfae1-d451-49e5-9db0-3b9dfac13caa)
   (lib_gate 0539fd52-890f-48af-97a9-bacfb79c9475)
   (position 93.98 124.46) (rotation 0.0) (mirror false)
+  (text 5ec17485-716e-4eb9-8bbf-273444155632 (layer sym_values) (value "{{VALUE}}")
+   (align center top) (height 2.54) (position 93.98 124.46) (rotation 0.0)
+  )
  )
  (symbol c688c61b-74f1-4590-b2fb-141d1303eb04
   (component 0079e83a-44cd-4c4d-8dd2-df47b1e2b614)
   (lib_gate 0539fd52-890f-48af-97a9-bacfb79c9475)
   (position 93.98 147.32) (rotation 0.0) (mirror false)
+  (text 5ec17485-716e-4eb9-8bbf-273444155632 (layer sym_values) (value "{{VALUE}}")
+   (align center top) (height 2.54) (position 93.98 147.32) (rotation 0.0)
+  )
  )
  (symbol c8bf10d2-4228-404b-b2e4-007f9f25f0cd
   (component aaa9cb46-7179-4545-b882-d573d16cdb57)
   (lib_gate 0539fd52-890f-48af-97a9-bacfb79c9475)
   (position 78.74 7.62) (rotation 0.0) (mirror false)
+  (text 5ec17485-716e-4eb9-8bbf-273444155632 (layer sym_values) (value "{{VALUE}}")
+   (align center top) (height 2.54) (position 78.74 7.62) (rotation 0.0)
+  )
  )
  (symbol cce423f9-59e3-496a-bbf7-98aaf656b8a4
   (component 8bfb73cc-3f0a-407c-8f04-888f16c9c7f9)
   (lib_gate 0539fd52-890f-48af-97a9-bacfb79c9475)
   (position 182.88 154.94) (rotation 0.0) (mirror false)
+  (text 5ec17485-716e-4eb9-8bbf-273444155632 (layer sym_values) (value "{{VALUE}}")
+   (align center top) (height 2.54) (position 182.88 154.94) (rotation 0.0)
+  )
  )
  (symbol cda5ebf9-47a0-42fc-8a55-92d18ca7be99
   (component 597a8033-8e3e-4ab3-a86a-617e4586ed6a)
   (lib_gate 09b6d6c4-2d37-432f-9471-a317aad9a499)
   (position 193.04 50.8) (rotation 0.0) (mirror false)
+  (text 15577fff-01b3-45ca-b5b1-37bada817ff4 (layer sym_values) (value "{{VALUE}}")
+   (align center bottom) (height 2.54) (position 193.04 50.8) (rotation 0.0)
+  )
  )
  (symbol d745876b-84f8-437a-88c4-0dea21d8e1a5
   (component cce8362d-47e5-4b63-ab97-1d5a27d1e42f)
   (lib_gate 0539fd52-890f-48af-97a9-bacfb79c9475)
   (position 93.98 101.6) (rotation 0.0) (mirror false)
+  (text 5ec17485-716e-4eb9-8bbf-273444155632 (layer sym_values) (value "{{VALUE}}")
+   (align center top) (height 2.54) (position 93.98 101.6) (rotation 0.0)
+  )
  )
  (symbol d90f1916-95cf-4936-ac0a-0b1b286380c4
   (component 536f3bf2-6247-400d-9f70-121f5b133d9d)
   (lib_gate 42989503-2795-4892-9d83-b919cd7dad76)
   (position 93.98 154.94) (rotation 180.0) (mirror false)
+  (text 6ac6ad4c-da41-4007-a7c4-b7bbbc3c1ed4 (layer sym_values) (value "{{VALUE}}")
+   (align left top) (height 2.54) (position 91.44 154.94) (rotation 180.0)
+  )
+  (text d388bfc1-774c-4a8e-84a6-fa8a6df43f29 (layer sym_names) (value "{{NAME}}")
+   (align left bottom) (height 2.54) (position 91.44 154.94) (rotation 180.0)
+  )
  )
  (symbol dcfc0016-2605-4a1e-851c-f41664fe317d
   (component bda1e9e1-86cd-428e-b986-60d8acde2b35)
   (lib_gate 42989503-2795-4892-9d83-b919cd7dad76)
   (position 68.58 78.74) (rotation 0.0) (mirror false)
+  (text 6ac6ad4c-da41-4007-a7c4-b7bbbc3c1ed4 (layer sym_values) (value "{{VALUE}}")
+   (align left top) (height 2.54) (position 71.12 78.74) (rotation 0.0)
+  )
+  (text d388bfc1-774c-4a8e-84a6-fa8a6df43f29 (layer sym_names) (value "{{NAME}}")
+   (align left bottom) (height 2.54) (position 71.12 78.74) (rotation 0.0)
+  )
  )
  (symbol df9681e6-3761-4f71-b20f-6985c61b9b26
   (component 4f036770-be24-485e-b0e9-6264608769b0)
   (lib_gate 6ca391c0-1c6d-4176-9607-31bf40d1b406)
   (position 0.0 0.0) (rotation 0.0) (mirror false)
+  (text 104c25a9-e6bd-4f85-8f57-d7c4284bb5e8 (layer sym_outlines) (value "{{FIELD_PAGE}}")
+   (align left center) (height 3.5) (position 247.0 2.5) (rotation 0.0)
+  )
+  (text 342d6d92-28aa-4993-9a09-acc34a8aa7ce (layer sym_outlines) (value "{{FIELD_DATE}}")
+   (align left center) (height 3.5) (position 247.0 12.5) (rotation 0.0)
+  )
+  (text 916fa409-c3b0-4704-96d3-2e034b4511b9 (layer sym_outlines) (value "{{FIELD_VERSION}}")
+   (align left center) (height 3.5) (position 227.0 2.5) (rotation 0.0)
+  )
+  (text 96e63648-7840-4715-8459-8a99412f14e7 (layer sym_outlines) (value "{{FIELD_AUTHOR}}")
+   (align left center) (height 3.5) (position 247.0 7.5) (rotation 0.0)
+  )
+  (text ab2d1999-564c-4dae-883c-1258bc1bbfff (layer sym_outlines) (value "{{FIELD_SHEET}}")
+   (align left center) (height 7.5) (position 162.0 10.0) (rotation 0.0)
+  )
+  (text f6a08b93-d5f6-49c6-86a8-31ffbc901dfa (layer sym_outlines) (value "{{FIELD_PROJECT}}")
+   (align left center) (height 3.5) (position 162.0 2.5) (rotation 0.0)
+  )
  )
  (symbol e682aa66-92f8-43d5-a5b6-6098801553f9
   (component be452fd5-e81b-4d5a-84f5-64df5b0b6004)
   (lib_gate 5988c66a-f507-487e-9b40-486502e8c9bd)
   (position 162.56 157.48) (rotation 180.0) (mirror false)
+  (text bab382bd-43f9-4a5e-ab62-6af84bd669f8 (layer sym_names) (value "{{NAME}}")
+   (align left bottom) (height 2.54) (position 165.64 156.464) (rotation 180.0)
+  )
+  (text c7fc8f16-1080-48e4-a232-7deb0dd96624 (layer sym_values) (value "{{VALUE}}")
+   (align left top) (height 2.54) (position 165.64 158.496) (rotation 180.0)
+  )
  )
  (symbol ecb690d6-a924-415a-9153-417820754d43
   (component 0b90187d-5cd9-4f08-bed4-bc0cc79af5f2)
   (lib_gate 0a5f51e8-c25e-4e8b-a6a2-efc109e0c8e0)
   (position 208.28 43.18) (rotation 0.0) (mirror false)
+  (text 0224f0f0-f943-4a65-aa47-3e3af80faf83 (layer sym_values) (value "{{VALUE}}")
+   (align center top) (height 2.54) (position 208.28 35.56) (rotation 0.0)
+  )
+  (text babf64bc-6c93-44a2-9ef0-b029f76d3247 (layer sym_names) (value "{{NAME}}")
+   (align center bottom) (height 2.54) (position 208.28 50.8) (rotation 0.0)
+  )
  )
  (symbol eee10f77-d52c-49d7-8796-45c21ea4d7a3
   (component 9465546b-96d8-4b5d-9462-ad87ae560fc9)
   (lib_gate 0539fd52-890f-48af-97a9-bacfb79c9475)
   (position 17.78 43.18) (rotation 0.0) (mirror false)
+  (text 5ec17485-716e-4eb9-8bbf-273444155632 (layer sym_values) (value "{{VALUE}}")
+   (align center top) (height 2.54) (position 17.78 43.18) (rotation 0.0)
+  )
  )
  (symbol f69c431b-46dc-4d5e-893c-ccd1afd1667b
   (component d942c754-77f5-47c5-9b05-8ff2a13c9f16)
   (lib_gate 5988c66a-f507-487e-9b40-486502e8c9bd)
   (position 15.24 157.48) (rotation 0.0) (mirror false)
+  (text bab382bd-43f9-4a5e-ab62-6af84bd669f8 (layer sym_names) (value "{{NAME}}")
+   (align left bottom) (height 2.54) (position 12.16 158.496) (rotation 0.0)
+  )
+  (text c7fc8f16-1080-48e4-a232-7deb0dd96624 (layer sym_values) (value "{{VALUE}}")
+   (align left top) (height 2.54) (position 12.16 156.464) (rotation 0.0)
+  )
  )
  (symbol fe03e0af-fc09-416b-8256-72fb1d991886
   (component e5be8035-d236-498c-9bfc-e4b4a6d85121)
   (lib_gate 5988c66a-f507-487e-9b40-486502e8c9bd)
   (position 25.4 58.42) (rotation 90.0) (mirror false)
+  (text bab382bd-43f9-4a5e-ab62-6af84bd669f8 (layer sym_names) (value "{{NAME}}")
+   (align left bottom) (height 2.54) (position 24.384 55.34) (rotation 90.0)
+  )
+  (text c7fc8f16-1080-48e4-a232-7deb0dd96624 (layer sym_values) (value "{{VALUE}}")
+   (align left top) (height 2.54) (position 26.416 55.34) (rotation 90.0)
+  )
  )
-
  (netsegment 020f5b17-e4c1-44c1-8ea9-b7826b2631b1
   (net 0d660cc2-d9ca-44b7-a71a-d8344a906ee3)
   (junction e33a4d27-e80e-45a6-aac8-aa0f5ca98619 (position 218.44 43.18))
@@ -261,7 +496,7 @@
    (to (junction e33a4d27-e80e-45a6-aac8-aa0f5ca98619))
   )
   (label aecf0cfc-bd89-4627-bf28-5cab97afa009
-   (position 218.44 43.18) (rotation 0.0)
+   (position 218.44 43.18) (rotation 0.0) (mirror false)
   )
  )
  (netsegment 0e68cca5-0d15-4c3d-a628-c5c8f46c1c0b
@@ -272,7 +507,7 @@
    (to (junction c3a34549-f99c-411f-bda8-30aafe9c2faa))
   )
   (label 6e2dfd5b-0f18-4bce-895f-f86e991eb2b5
-   (position 243.84 88.9) (rotation 0.0)
+   (position 243.84 88.9) (rotation 0.0) (mirror false)
   )
  )
  (netsegment 126bab63-62b6-4c07-8ed3-7800503a6d62
@@ -299,7 +534,7 @@
    (to (junction 79d75ed2-ae3b-4e06-84fb-d1646345faff))
   )
   (label 09ea4923-6421-4611-95ee-e9d4699a4761
-   (position 195.58 40.64) (rotation 0.0)
+   (position 195.58 40.64) (rotation 0.0) (mirror false)
   )
  )
  (netsegment 16e58fe6-d672-493b-b3d9-54c20355adfc
@@ -310,7 +545,7 @@
    (to (junction a066bd08-398a-4a52-8a2d-be0157da9e32))
   )
   (label eb2ae40b-72ca-437e-8876-fc21947efe00
-   (position 218.44 38.1) (rotation 0.0)
+   (position 218.44 38.1) (rotation 0.0) (mirror false)
   )
  )
  (netsegment 1979a0f9-4dea-403d-aeca-cd2466de84a4
@@ -321,7 +556,7 @@
    (to (junction a4162c88-2349-4547-8c18-2f506939f50c))
   )
   (label f4ece6d3-b39c-4f73-a14f-f384b926f1f7
-   (position 243.84 45.72) (rotation 0.0)
+   (position 243.84 45.72) (rotation 0.0) (mirror false)
   )
  )
  (netsegment 19901c15-b16a-458b-bef6-db3712186f13
@@ -332,7 +567,7 @@
    (to (junction c9ffdc32-3501-42f0-9950-5162d270c4fc))
   )
   (label 9628c8ca-0592-4085-ba7d-0402e183451f
-   (position 53.34 147.32) (rotation 0.0)
+   (position 53.34 147.32) (rotation 0.0) (mirror false)
   )
  )
  (netsegment 223f30ab-3076-42ec-8c3a-d6633577257b
@@ -343,7 +578,7 @@
    (to (junction 033a888c-8040-4d65-bad3-49213079b958))
   )
   (label e1c57cb5-b63a-41e1-a7ba-556712bd9c6a
-   (position 218.44 40.64) (rotation 0.0)
+   (position 218.44 40.64) (rotation 0.0) (mirror false)
   )
  )
  (netsegment 26024039-4413-44a8-bf67-f1b0664cd11f
@@ -354,7 +589,7 @@
    (to (junction 1ffc3080-9ec7-41d6-817b-9381262f9d1d))
   )
   (label c2150f81-7477-4a30-adac-5b5a1ab3a42e
-   (position 218.44 48.26) (rotation 0.0)
+   (position 218.44 48.26) (rotation 0.0) (mirror false)
   )
  )
  (netsegment 2d8b7ee4-dd50-4470-94cb-bf6843bf7eb2
@@ -383,7 +618,7 @@
    (to (junction 9ac3e07a-9b8d-4730-8815-e98f26c7c5b8))
   )
   (label 8fecbd32-98c1-40d4-9d6e-7c768d729bcf
-   (position 127.0 134.62) (rotation 0.0)
+   (position 127.0 134.62) (rotation 0.0) (mirror false)
   )
  )
  (netsegment 33558dec-fcc3-4fbc-ba48-5ff287d0f572
@@ -403,7 +638,7 @@
    (to (junction 38364231-3bc6-4dab-9d56-2c85bd72161a))
   )
   (label ab50c670-7ca2-46a7-a386-a1415f069e1f
-   (position 71.12 83.82) (rotation 0.0)
+   (position 71.12 83.82) (rotation 0.0) (mirror false)
   )
  )
  (netsegment 337c131a-2837-4c5b-8085-9970b467304b
@@ -414,7 +649,7 @@
    (to (junction 14aa0ba3-3143-4124-8a05-67b89c20af56))
   )
   (label dc030aff-db62-4137-b3c8-28d499b803ef
-   (position 243.84 121.92) (rotation 0.0)
+   (position 243.84 121.92) (rotation 0.0) (mirror false)
   )
  )
  (netsegment 35cd31b4-4684-4acf-9838-b0c1a566ca0b
@@ -425,7 +660,7 @@
    (to (junction 154edd03-3bad-4402-941d-05d88f5c4572))
   )
   (label 46cc2f3b-0a80-48d5-bf1c-9589267569e8
-   (position 124.46 106.68) (rotation 0.0)
+   (position 124.46 106.68) (rotation 0.0) (mirror false)
   )
  )
  (netsegment 3b47d53e-2e29-45a4-8a14-8b234ae072c0
@@ -443,7 +678,7 @@
    (to (junction 499bf2e7-6dff-4d55-b3de-e8df5ad307ad))
   )
   (label 52914de7-835e-49c6-b98e-87f2265d02c7
-   (position 127.0 88.9) (rotation 0.0)
+   (position 127.0 88.9) (rotation 0.0) (mirror false)
   )
  )
  (netsegment 3df7ce99-3455-4e08-a1df-639d3afe1c0b
@@ -454,7 +689,7 @@
    (to (junction 1b94fa7b-7ccc-4a48-8eba-0d1bf0cf5b58))
   )
   (label 8a1e11c2-a8ed-461b-8264-0de6086d4145
-   (position 243.84 116.84) (rotation 0.0)
+   (position 243.84 116.84) (rotation 0.0) (mirror false)
   )
  )
  (netsegment 41ccb1cb-c76f-4813-8fe7-bda0459dfea2
@@ -465,7 +700,7 @@
    (to (junction 996ffe61-8869-47e5-b8ed-4dd759efed85))
   )
   (label 48d311c7-1054-462c-af85-65915eef5b8f
-   (position 243.84 48.26) (rotation 0.0)
+   (position 243.84 48.26) (rotation 0.0) (mirror false)
   )
  )
  (netsegment 4277b965-74b7-44b0-95a4-bcaa4c7ae4db
@@ -522,7 +757,7 @@
    (to (junction 2b447397-c088-4e2a-a994-9609ff63972d))
   )
   (label 6cfae704-52fa-43c2-870d-a361450bf418
-   (position 243.84 91.44) (rotation 0.0)
+   (position 243.84 91.44) (rotation 0.0) (mirror false)
   )
  )
  (netsegment 45181df6-094c-4f11-bc6b-4866076116b6
@@ -533,7 +768,7 @@
    (to (junction e7b2060f-e7c1-4a02-bcab-d3923a4635f6))
   )
   (label 08f8d05a-5f5b-49fe-a02a-a679ff58bf19
-   (position 53.34 139.7) (rotation 0.0)
+   (position 53.34 139.7) (rotation 0.0) (mirror false)
   )
  )
  (netsegment 462627e5-85ab-4cf6-a33c-b7330c6df156
@@ -544,7 +779,7 @@
    (to (junction ab73955c-aab4-4b66-a9b3-93673f90fa59))
   )
   (label 90c81061-f955-4e81-809e-8ed09bb31f90
-   (position 124.46 111.76) (rotation 0.0)
+   (position 124.46 111.76) (rotation 0.0) (mirror false)
   )
  )
  (netsegment 4672ae00-6038-4eb0-856e-95d82b492701
@@ -562,7 +797,7 @@
    (to (junction 178077c3-b2a1-4e3e-aa04-25823b299f1f))
   )
   (label 2782f3c4-972a-4281-bec0-a9aab2b87b73
-   (position 53.34 149.86) (rotation 0.0)
+   (position 53.34 149.86) (rotation 0.0) (mirror false)
   )
  )
  (netsegment 4df066b9-674d-4488-bcd2-95e863e0097a
@@ -573,7 +808,7 @@
    (to (junction 97d82b32-3195-4ce7-bcf7-9c9b540d038c))
   )
   (label d5833984-c953-44a9-a4ad-a41198050348
-   (position 154.94 157.48) (rotation 0.0)
+   (position 154.94 157.48) (rotation 0.0) (mirror false)
   )
  )
  (netsegment 54e1a31f-da16-4491-9802-d1ea0fb681ff
@@ -603,7 +838,7 @@
    (to (junction 56916b8d-4210-4d1c-bf8e-1ba20a452f1e))
   )
   (label dbdcb0f4-a4d8-46f4-8755-f9463f2a9cdf
-   (position 124.46 157.48) (rotation 0.0)
+   (position 124.46 157.48) (rotation 0.0) (mirror false)
   )
  )
  (netsegment 61672d41-3583-431a-936c-a9bcd736144e
@@ -614,7 +849,7 @@
    (to (junction e607d135-c08f-47e1-87dd-196f7cc4d480))
   )
   (label c89f2a7a-0a63-4fac-b11e-f2df4487021a
-   (position 218.44 45.72) (rotation 0.0)
+   (position 218.44 45.72) (rotation 0.0) (mirror false)
   )
  )
  (netsegment 65f413e0-a86d-4ee4-b9b2-344c79900669
@@ -625,7 +860,7 @@
    (to (junction 56407756-7414-403a-844d-2ee06646e603))
   )
   (label 5b2f1a2a-a48e-4904-afa3-d1b5fddc7a62
-   (position 243.84 119.38) (rotation 0.0)
+   (position 243.84 119.38) (rotation 0.0) (mirror false)
   )
  )
  (netsegment 662bd3e5-5f6c-42db-a45c-1e17132b530d
@@ -749,7 +984,7 @@
    (to (junction b5824911-fddf-45a1-ae0c-01042702e3c3))
   )
   (label 7535c156-e6d8-4d5c-8dba-d58f7c16c40a
-   (position 243.84 93.98) (rotation 0.0)
+   (position 243.84 93.98) (rotation 0.0) (mirror false)
   )
  )
  (netsegment 878b2f10-b541-491c-8c5b-0d0a80d6c717
@@ -760,7 +995,7 @@
    (to (junction 6de5fa61-b76b-4b0c-879d-86766a481556))
   )
   (label 675cba11-a35b-48da-8ab0-b34410915630
-   (position 53.34 144.78) (rotation 0.0)
+   (position 53.34 144.78) (rotation 0.0) (mirror false)
   )
  )
  (netsegment 8da716b8-84ec-41e9-89b8-c65c718d10a0
@@ -771,7 +1006,7 @@
    (to (junction a255041a-f0e6-45cf-a3bf-f04b664dd29f))
   )
   (label 10e605fd-114a-40d5-853f-efb94ff20257
-   (position 243.84 96.52) (rotation 0.0)
+   (position 243.84 96.52) (rotation 0.0) (mirror false)
   )
  )
  (netsegment 94ccdbf7-e029-4a9d-af61-cc68f74050c1
@@ -803,7 +1038,7 @@
    (to (junction ef1d121b-8846-4cab-b087-03115839ae56))
   )
   (label 2ae6ad9d-13bc-4641-b0d2-5993944aa184
-   (position 124.46 152.4) (rotation 0.0)
+   (position 124.46 152.4) (rotation 0.0) (mirror false)
   )
  )
  (netsegment b2482547-4988-41eb-ab21-2f1bf05de86b
@@ -814,7 +1049,7 @@
    (to (junction 78342fc6-d3ad-418e-ac13-b56aa325abd0))
   )
   (label 76ff2ac0-02bd-4ad0-954e-b71743d4625b
-   (position 53.34 124.46) (rotation 0.0)
+   (position 53.34 124.46) (rotation 0.0) (mirror false)
   )
  )
  (netsegment b423811d-de3f-4bfe-a040-63992361bdd8
@@ -842,7 +1077,7 @@
    (to (junction 340f6d62-1b5a-419d-9e7f-3bd0269310ce))
   )
   (label 7ac101db-5ac3-44c3-920a-254e0e3062b5
-   (position 53.34 121.92) (rotation 0.0)
+   (position 53.34 121.92) (rotation 0.0) (mirror false)
   )
  )
  (netsegment b4b93f8e-0452-42b2-9581-dcdcbf00adb1
@@ -865,7 +1100,7 @@
    (to (junction 2ce93913-cbe6-4487-8468-3b5107eef14d))
   )
   (label 85a1d543-ddff-4535-8176-25817f676d4f
-   (position 53.34 129.54) (rotation 0.0)
+   (position 53.34 129.54) (rotation 0.0) (mirror false)
   )
  )
  (netsegment bc8ae07b-8f30-426f-902c-11c3c150420e
@@ -876,7 +1111,7 @@
    (to (junction c822c87f-9c5e-42ba-857f-63ef5407e5c6))
   )
   (label d092f91f-26bc-485d-8d6f-aa433a1a5d32
-   (position 53.34 137.16) (rotation 0.0)
+   (position 53.34 137.16) (rotation 0.0) (mirror false)
   )
  )
  (netsegment bd3cd12b-eaa9-494e-b153-a50ff32b963c
@@ -887,7 +1122,7 @@
    (to (junction 00c5f3a6-da82-4033-a5cb-ca769e1b1fa7))
   )
   (label 2b4ba030-ae72-47b9-9adc-8ab8ffa79f4f
-   (position 193.04 86.36) (rotation 0.0)
+   (position 193.04 86.36) (rotation 0.0) (mirror false)
   )
  )
  (netsegment c33928a0-d9d8-4876-8257-4db391f45ef9
@@ -916,7 +1151,7 @@
    (to (junction 6d158816-853d-48fe-a1f1-dc38fa88757f))
   )
   (label 53e19bd9-77b9-4571-beb6-be907715b80a
-   (position 53.34 127.0) (rotation 0.0)
+   (position 53.34 127.0) (rotation 0.0) (mirror false)
   )
  )
  (netsegment cc87cb1e-0fb7-4c30-b585-3053b4f6b322
@@ -927,7 +1162,7 @@
    (to (junction 2c5aafc0-4d0b-4deb-8f9e-6fbb3d2ff117))
   )
   (label e1a73ac7-d96a-4aa4-af2b-c2abd406e81a
-   (position 193.04 93.98) (rotation 0.0)
+   (position 193.04 93.98) (rotation 0.0) (mirror false)
   )
  )
  (netsegment cc9b4e43-f9e9-44e0-9d28-0de1676582dd
@@ -973,7 +1208,7 @@
    (to (symbol f69c431b-46dc-4d5e-893c-ccd1afd1667b) (pin 2731f213-ee20-4eb0-a18b-ad97d9fea7a0))
   )
   (label 38e69025-3c0f-4c6f-ab73-992892600e1d
-   (position 20.32 157.48) (rotation 0.0)
+   (position 20.32 157.48) (rotation 0.0) (mirror false)
   )
  )
  (netsegment dd51eb66-efa7-438c-800d-bdd54ee25ae3
@@ -984,7 +1219,7 @@
    (to (junction ac2df7d4-4905-4d66-86d4-948cd576efc1))
   )
   (label 2bc416f7-e4ef-42a2-ab73-f3123927e994
-   (position 53.34 142.24) (rotation 0.0)
+   (position 53.34 142.24) (rotation 0.0) (mirror false)
   )
  )
  (netsegment e43acd8b-b178-4b61-a8e0-d72430df9a68
@@ -995,7 +1230,7 @@
    (to (junction 41b35c71-4e67-4a30-94aa-46fb4140c45a))
   )
   (label 45dca4ca-730c-4e9e-a61f-24e0ca575cd6
-   (position 53.34 134.62) (rotation 0.0)
+   (position 53.34 134.62) (rotation 0.0) (mirror false)
   )
  )
  (netsegment e6ed5a98-b766-4b5b-ac22-d9b66cf50bd7
@@ -1006,7 +1241,7 @@
    (to (junction 113804a0-d497-4860-a6c2-04acd1d80a50))
   )
   (label cbf9ece2-5cfa-4728-89a7-60bc20ec7941
-   (position 127.0 83.82) (rotation 0.0)
+   (position 127.0 83.82) (rotation 0.0) (mirror false)
   )
  )
  (netsegment ea916c6b-de9d-42fa-9380-50f9add6a654
@@ -1029,7 +1264,7 @@
    (to (junction 568e9c53-3e14-4bdc-a4a0-c1f8ee01a09b))
   )
   (label 348e5ec5-d385-4e73-96cc-e9e213415e3f
-   (position 127.0 132.08) (rotation 0.0)
+   (position 127.0 132.08) (rotation 0.0) (mirror false)
   )
  )
  (netsegment ee7017d0-1e59-471b-9bfd-7a66a358e15d
@@ -1049,7 +1284,7 @@
    (to (symbol a1c899b8-891e-4ca7-82c5-53ba1fcc2352) (pin ba4ee205-dc94-46cd-b35e-842121628647))
   )
   (label 6c54a20c-05c1-4a84-b0a3-869d2981aef5
-   (position 71.12 86.36) (rotation 0.0)
+   (position 71.12 86.36) (rotation 0.0) (mirror false)
   )
  )
  (netsegment f5a955de-bd07-4317-b5ae-ef1f667436c2
@@ -1111,5 +1346,4 @@
    (to (junction 80ffb6ab-db74-4dfe-9365-5978928abf94))
   )
  )
-
 )

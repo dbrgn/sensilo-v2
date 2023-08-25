@@ -1,11 +1,12 @@
 (librepcb_device e5671e21-ec1c-42ad-b413-1806e3947f8e
  (name "GCT USB4085")
- (description "USB 2.0 Type-C through-hole receptable.\n\nCurrent rating: 3A.\nMating cycles: 10\'000.\n\nhttps://gct.co/connector/usb4085")
+ (description "USB 2.0 Type-C through-hole receptable.\n\nCurrent rating: 3A.\nMating cycles: 10'000.\n\nhttps://gct.co/connector/usb4085")
  (keywords "USB4085-GF-A,USB4085-30-A,type-c,usb,usb 2.0,gct")
  (author "Danilo B.")
  (version "0.1")
  (created 2022-12-31T01:38:38Z)
  (deprecated false)
+ (generated_by "")
  (category c4c12c6e-abcd-4856-8445-e96c2737423e)
  (component af872e90-b562-4996-8ad5-0301a554b951)
  (package 4cbe5ca7-988f-42c1-ae5f-ee9f49fbe687)
