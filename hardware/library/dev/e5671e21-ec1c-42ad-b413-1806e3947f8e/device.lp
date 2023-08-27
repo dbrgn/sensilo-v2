@@ -30,4 +30,6 @@
  (pad e44396f6-9995-44db-a64c-10267a658fdd (signal 1b087955-056b-44d0-8cb2-4fde091eea70))
  (pad ea78cb91-e9d8-44f9-892e-c4ed966e177c (signal fa71cad4-d288-46bf-97d8-7a3dbd95ec90))
  (pad ef235fa0-f1c7-4285-aa6e-b4de791003ee (signal 1b087955-056b-44d0-8cb2-4fde091eea70))
+ (part "USB4085-GF-A" (manufacturer "Global Connector Technology")
+ )
 )
