@@ -1,6 +1,6 @@
 (librepcb_device 886a24a7-60d6-4e7f-ac6d-6ed41a9fed76
- (name "ESP32-C3-WROOM-02")
- (description "- 2.4 GHz Wi­Fi (802.11 b/g/n) and Bluetooth® 5 module\n- Built around ESP32­C3 series of SoCs, RISC­V single­core microprocessor\n- 4 MB flash, 15 GPIOs\n- On­board PCB antenna")
+ (name "ESP32-C3-WROOM-02-N4")
+ (description "- 2.4 GHz Wi­Fi (802.11 b/g/n) and Bluetooth® 5 module\n- Built around ESP32­C3 series of SoCs, RISC­V single­core microprocessor\n- 4 MB flash, 15 GPIOs\n- On­board PCB antenna\n- Ambient temperature range: -40 ~ 85 °C")
  (keywords "esp32,esp32-c3,wroom")
  (author "Danilo B.")
  (version "0.1")

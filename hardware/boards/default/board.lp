@@ -60,7 +60,7 @@
  (device 02b1d19d-a158-41a8-8eb5-67719c354b94
   (lib_device 078650d3-483c-4b9e-a848-b14f1aad2edc)
   (lib_footprint e8596efa-bd51-4063-87aa-a44fa5640576)
-  (lib_3d_model none)
+  (lib_3d_model 70a52ef3-ce4d-480a-a79b-5929f52ddf44)
   (position 11.0025 12.04) (rotation 270.0) (flip false) (lock false)
   (stroke_text 4950b973-32f3-4283-a608-5ba302ece963 (layer top_names)
    (height 0.8) (stroke_width 0.15) (letter_spacing auto) (line_spacing auto)
@@ -76,7 +76,7 @@
  (device 0ae5611c-4588-424c-b158-b885d4b1e5d9
   (lib_device 078650d3-483c-4b9e-a848-b14f1aad2edc)
   (lib_footprint e8596efa-bd51-4063-87aa-a44fa5640576)
-  (lib_3d_model none)
+  (lib_3d_model 70a52ef3-ce4d-480a-a79b-5929f52ddf44)
   (position 23.495 33.9725) (rotation 90.0) (flip false) (lock false)
   (stroke_text 4950b973-32f3-4283-a608-5ba302ece963 (layer top_names)
    (height 0.8) (stroke_width 0.15) (letter_spacing auto) (line_spacing auto)
@@ -108,7 +108,7 @@
  (device 30ddd90b-28f1-486b-b44e-df4748818093
   (lib_device c139e505-592b-46ba-bdf2-acb7383ea0cd)
   (lib_footprint 328e4ae0-a0f1-4d92-87b5-1695afbe98e1)
-  (lib_3d_model none)
+  (lib_3d_model 5d053e45-ab76-407c-88ae-d7936dff282b)
   (position 12.065 8.89) (rotation 0.0) (flip false) (lock false)
   (stroke_text 5b0ffd48-7eeb-4966-a925-4931ab89d564 (layer top_names)
    (height 1.0) (stroke_width 0.2) (letter_spacing auto) (line_spacing auto)
@@ -124,7 +124,7 @@
  (device 536f3bf2-6247-400d-9f70-121f5b133d9d
   (lib_device c139e505-592b-46ba-bdf2-acb7383ea0cd)
   (lib_footprint 328e4ae0-a0f1-4d92-87b5-1695afbe98e1)
-  (lib_3d_model none)
+  (lib_3d_model 5d053e45-ab76-407c-88ae-d7936dff282b)
   (position 32.385 38.735) (rotation 180.0) (flip false) (lock false)
   (stroke_text 5b0ffd48-7eeb-4966-a925-4931ab89d564 (layer top_names)
    (height 0.8) (stroke_width 0.15) (letter_spacing auto) (line_spacing auto)
@@ -140,7 +140,7 @@
  (device 557a5c5f-2953-4ee0-8f21-92737d69d4cf
   (lib_device c139e505-592b-46ba-bdf2-acb7383ea0cd)
   (lib_footprint 328e4ae0-a0f1-4d92-87b5-1695afbe98e1)
-  (lib_3d_model none)
+  (lib_3d_model 5d053e45-ab76-407c-88ae-d7936dff282b)
   (position 10.5 18.73) (rotation 270.0) (flip false) (lock false)
   (stroke_text 5b0ffd48-7eeb-4966-a925-4931ab89d564 (layer top_names)
    (height 0.8) (stroke_width 0.15) (letter_spacing auto) (line_spacing auto)
@@ -167,7 +167,7 @@
  (device 70941c91-770d-43af-8d38-d99182353dda
   (lib_device c139e505-592b-46ba-bdf2-acb7383ea0cd)
   (lib_footprint 328e4ae0-a0f1-4d92-87b5-1695afbe98e1)
-  (lib_3d_model none)
+  (lib_3d_model 5d053e45-ab76-407c-88ae-d7936dff282b)
   (position 2.0 18.73) (rotation 270.0) (flip false) (lock false)
   (stroke_text 5b0ffd48-7eeb-4966-a925-4931ab89d564 (layer top_names)
    (height 0.8) (stroke_width 0.15) (letter_spacing auto) (line_spacing auto)
@@ -252,7 +252,7 @@
  (device b735c578-a9d1-4089-851f-8161c632a43a
   (lib_device 078650d3-483c-4b9e-a848-b14f1aad2edc)
   (lib_footprint e8596efa-bd51-4063-87aa-a44fa5640576)
-  (lib_3d_model none)
+  (lib_3d_model 70a52ef3-ce4d-480a-a79b-5929f52ddf44)
   (position 28.2575 23.8125) (rotation 270.0) (flip false) (lock false)
   (stroke_text bb6f494d-576b-4b13-b10c-fd0781c5b8c3 (layer top_values)
    (height 1.0) (stroke_width 0.2) (letter_spacing auto) (line_spacing auto)
@@ -359,7 +359,7 @@
  (device e5be8035-d236-498c-9bfc-e4b4a6d85121
   (lib_device 078650d3-483c-4b9e-a848-b14f1aad2edc)
   (lib_footprint e8596efa-bd51-4063-87aa-a44fa5640576)
-  (lib_3d_model none)
+  (lib_3d_model 70a52ef3-ce4d-480a-a79b-5929f52ddf44)
   (position 8.255 3.175) (rotation 180.0) (flip false) (lock false)
   (stroke_text 4950b973-32f3-4283-a608-5ba302ece963 (layer top_names)
    (height 0.8) (stroke_width 0.15) (letter_spacing auto) (line_spacing auto)
@@ -375,7 +375,7 @@
  (device f9a7a7fc-f405-42fc-a433-381c01233730
   (lib_device c139e505-592b-46ba-bdf2-acb7383ea0cd)
   (lib_footprint 328e4ae0-a0f1-4d92-87b5-1695afbe98e1)
-  (lib_3d_model none)
+  (lib_3d_model 5d053e45-ab76-407c-88ae-d7936dff282b)
   (position 25.4 6.35) (rotation 0.0) (flip false) (lock false)
   (stroke_text 5b0ffd48-7eeb-4966-a925-4931ab89d564 (layer top_names)
    (height 1.0) (stroke_width 0.2) (letter_spacing auto) (line_spacing auto)
