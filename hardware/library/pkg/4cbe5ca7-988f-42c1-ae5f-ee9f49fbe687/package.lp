@@ -29,10 +29,12 @@
  (pad 0896391a-54b0-4220-a5ba-21a2a81ce39e (name "S3"))
  (pad d94732f3-1aaa-45f9-aae7-3618baee6cee (name "S4"))
  (pad ea78cb91-e9d8-44f9-892e-c4ed966e177c (name "A12"))
+ (3d_model 4ffcd30a-4298-4357-a527-22067c00928f (name "usb4085-gf-a"))
  (footprint a62d4f25-ea30-40fe-aceb-9988583a0dc1
   (name "Round holes")
   (description "")
-  (3d_position 0.0 0.0 0.0) (3d_rotation 0.0 0.0 0.0)
+  (3d_position 0.0 -4.6 0.0) (3d_rotation 90.0 0.0 0.0)
+  (3d_model 4ffcd30a-4298-4357-a527-22067c00928f)
   (pad 8e756d33-ebd3-482c-98e7-0fc66487f5ae (side top) (shape roundrect)
    (position -0.425 4.025) (rotation 0.0) (size 0.65 0.65) (radius 1.0)
    (stop_mask auto) (solder_paste off) (clearance 0.0) (function standard)
