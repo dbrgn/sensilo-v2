@@ -322,7 +322,7 @@
  (device cffc6e55-c291-40b1-8590-1bb8b311d314
   (lib_device d087b2fb-d551-44ac-9cb7-f2d5745da2a4)
   (lib_footprint 0612a61c-b58c-4e80-a670-4bcec5f76eeb)
-  (lib_3d_model none)
+  (lib_3d_model 3bcfb1a7-2514-4e44-8be0-b70783916d1a)
   (position 6.5 18.73) (rotation 0.0) (flip false) (lock false)
   (stroke_text cb66543c-69e1-4337-9b61-571089beb64e (layer top_values)
    (height 1.0) (stroke_width 0.2) (letter_spacing auto) (line_spacing auto)
