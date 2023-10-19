@@ -448,6 +448,9 @@
   (name "C5") (value "{{CAPACITANCE}}")
   (lock_assembly false)
   (attribute "CAPACITANCE" (type capacitance) (unit nanofarad) (value ""))
+  (device c139e505-592b-46ba-bdf2-acb7383ea0cd
+   (variant 2ddd8dba-a872-4765-bcd5-9c5638484b45)
+  )
   (signal 1c1c7abc-7b40-4f92-b533-f65604644db7 (net 23322c80-2614-4e01-984d-85ef1bc485d2))
   (signal 6d776f4d-2a7c-4128-a98a-dbb1dd861411 (net 93ce9c03-b1e3-4ca9-b33b-f1062f8ae73c))
  )
