@@ -82,13 +82,6 @@
   (signal 3452d36e-1ce8-4b7c-8e5b-90c2e4929ed8 (net 93ce9c03-b1e3-4ca9-b33b-f1062f8ae73c))
   (signal ad623f98-9e73-49c3-9404-f7cfa99d17cd (net 7b2bd847-8944-4007-b162-b01527f280c9))
  )
- (component 036791fa-2d26-458f-89ad-13dbe5cb2fbf
-  (lib_component 8076f6be-bfab-4fc1-9772-5d54465dd7e1)
-  (lib_variant f09ad258-595b-4ee9-a1fc-910804a203ae)
-  (name "GND8") (value "GND")
-  (lock_assembly false)
-  (signal ff161c97-29a5-43aa-a9ae-3ca7a66982ce (net 93ce9c03-b1e3-4ca9-b33b-f1062f8ae73c))
- )
  (component 0ae5611c-4588-424c-b158-b885d4b1e5d9
   (lib_component ef80cd5e-2689-47ee-8888-31d04fc99174)
   (lib_variant a5995314-f535-45d4-8bd8-2d0b8a0dc42a)
@@ -142,18 +135,6 @@
   (signal 56821da8-23d7-4cc4-b63c-1c430314b594 (net 93ce9c03-b1e3-4ca9-b33b-f1062f8ae73c))
   (signal 5b930686-787e-42b2-8434-883ff4f607c1 (net 035c2839-e68a-4e02-b301-837bb065135d))
  )
- (component 30ddd90b-28f1-486b-b44e-df4748818093
-  (lib_component d167e0e3-6a92-4b76-b013-77b9c230e5f1)
-  (lib_variant 8cd7b37f-e5fa-4af5-a8dd-d78830bba3af)
-  (name "C3") (value "{{CAPACITANCE}}")
-  (lock_assembly false)
-  (attribute "CAPACITANCE" (type capacitance) (unit nanofarad) (value ""))
-  (device c139e505-592b-46ba-bdf2-acb7383ea0cd
-   (variant 2ddd8dba-a872-4765-bcd5-9c5638484b45)
-  )
-  (signal 1c1c7abc-7b40-4f92-b533-f65604644db7 (net 1bfc67da-4721-4b85-a19d-5e23e7d2d079))
-  (signal 6d776f4d-2a7c-4128-a98a-dbb1dd861411 (net 93ce9c03-b1e3-4ca9-b33b-f1062f8ae73c))
- )
  (component 34f50de8-3714-4f48-a34e-2d78c82d6e0b
   (lib_component 58c3c6cd-11eb-4557-aa3f-d3e05874afde)
   (lib_variant afb86b45-68ec-47b6-8d96-153d73567228)
@@ -182,13 +163,6 @@
   (lock_assembly false)
   (signal ff161c97-29a5-43aa-a9ae-3ca7a66982ce (net 93ce9c03-b1e3-4ca9-b33b-f1062f8ae73c))
  )
- (component 4cfee2f3-c0df-41a8-a2c7-62a24a0e0b1d
-  (lib_component 8076f6be-bfab-4fc1-9772-5d54465dd7e1)
-  (lib_variant f09ad258-595b-4ee9-a1fc-910804a203ae)
-  (name "GND10") (value "GND")
-  (lock_assembly false)
-  (signal ff161c97-29a5-43aa-a9ae-3ca7a66982ce (net 93ce9c03-b1e3-4ca9-b33b-f1062f8ae73c))
- )
  (component 4f036770-be24-485e-b0e9-6264608769b0
   (lib_component 98e71eaa-1b90-4a84-8529-ed4f493e5c41)
   (lib_variant 352cccd5-0c3c-4c66-88e0-6ee7c6a3cbf9)
@@ -204,10 +178,9 @@
  (component 536f3bf2-6247-400d-9f70-121f5b133d9d
   (lib_component d167e0e3-6a92-4b76-b013-77b9c230e5f1)
   (lib_variant 8cd7b37f-e5fa-4af5-a8dd-d78830bba3af)
-  (name "C4") (value "{{CAPACITANCE}}")
+  (name "C5") (value "{{CAPACITANCE}}\n{{MPN}}")
   (lock_assembly false)
   (attribute "CAPACITANCE" (type capacitance) (unit nanofarad) (value "100"))
-  (attribute "DIGIKEY" (type string) (unit none) (value "1276-1099-1-ND"))
   (device c139e505-592b-46ba-bdf2-acb7383ea0cd
    (variant 2ddd8dba-a872-4765-bcd5-9c5638484b45)
    (part "CL21B104KACNNNC" (manufacturer "Samsung")
@@ -216,16 +189,30 @@
   (signal 1c1c7abc-7b40-4f92-b533-f65604644db7 (net 93ce9c03-b1e3-4ca9-b33b-f1062f8ae73c))
   (signal 6d776f4d-2a7c-4128-a98a-dbb1dd861411 (net fde51a5f-2a7c-4c9e-8a77-cf450deec8eb))
  )
+ (component 5559a279-1c15-4f33-a19f-1aacea1e0008
+  (lib_component d167e0e3-6a92-4b76-b013-77b9c230e5f1)
+  (lib_variant 8cd7b37f-e5fa-4af5-a8dd-d78830bba3af)
+  (name "C3") (value "{{CAPACITANCE}}\n{{MPN}}")
+  (lock_assembly false)
+  (attribute "CAPACITANCE" (type capacitance) (unit microfarad) (value "22"))
+  (device 27c53d40-ec5f-42f7-b2f7-c766f77b2ba8
+   (variant 2ddd8dba-a872-4765-bcd5-9c5638484b45)
+   (part "CL32B226MOJNNNE" (manufacturer "Samsung")
+   )
+  )
+  (signal 1c1c7abc-7b40-4f92-b533-f65604644db7 (net fde51a5f-2a7c-4c9e-8a77-cf450deec8eb))
+  (signal 6d776f4d-2a7c-4128-a98a-dbb1dd861411 (net 93ce9c03-b1e3-4ca9-b33b-f1062f8ae73c))
+ )
  (component 557a5c5f-2953-4ee0-8f21-92737d69d4cf
   (lib_component d167e0e3-6a92-4b76-b013-77b9c230e5f1)
   (lib_variant 8cd7b37f-e5fa-4af5-a8dd-d78830bba3af)
-  (name "C2") (value "{{CAPACITANCE}}")
+  (name "C2") (value "{{CAPACITANCE}}\n{{MPN}}")
   (lock_assembly false)
   (attribute "CAPACITANCE" (type capacitance) (unit microfarad) (value "1"))
-  (attribute "DIGIKEY" (type string) (unit none) (value "1276-6471-1-ND"))
   (device c139e505-592b-46ba-bdf2-acb7383ea0cd
    (variant 2ddd8dba-a872-4765-bcd5-9c5638484b45)
    (part "CL21B105KOFNNNG" (manufacturer "Samsung")
+    (attribute "DIGIKEY" (type string) (unit none) (value "1276-6471-1-ND"))
    )
   )
   (signal 1c1c7abc-7b40-4f92-b533-f65604644db7 (net fde51a5f-2a7c-4c9e-8a77-cf450deec8eb))
@@ -267,13 +254,26 @@
   (lock_assembly false)
   (signal 1d893320-f811-4a79-b64e-cc23d749d394 (net b64f35d9-f667-44da-9b4b-a4a7c8c0a4b3))
  )
+ (component 6a7681da-f544-4da8-a5d2-d67af83ae5d9
+  (lib_component d167e0e3-6a92-4b76-b013-77b9c230e5f1)
+  (lib_variant 8cd7b37f-e5fa-4af5-a8dd-d78830bba3af)
+  (name "C4") (value "{{CAPACITANCE}}\n{{MPN}}")
+  (lock_assembly false)
+  (attribute "CAPACITANCE" (type capacitance) (unit nanofarad) (value "100"))
+  (device c139e505-592b-46ba-bdf2-acb7383ea0cd
+   (variant 2ddd8dba-a872-4765-bcd5-9c5638484b45)
+   (part "CL21B104KACNNNC" (manufacturer "Samsung")
+   )
+  )
+  (signal 1c1c7abc-7b40-4f92-b533-f65604644db7 (net fde51a5f-2a7c-4c9e-8a77-cf450deec8eb))
+  (signal 6d776f4d-2a7c-4128-a98a-dbb1dd861411 (net 93ce9c03-b1e3-4ca9-b33b-f1062f8ae73c))
+ )
  (component 70941c91-770d-43af-8d38-d99182353dda
   (lib_component d167e0e3-6a92-4b76-b013-77b9c230e5f1)
   (lib_variant 8cd7b37f-e5fa-4af5-a8dd-d78830bba3af)
-  (name "C1") (value "{{CAPACITANCE}}")
+  (name "C1") (value "{{CAPACITANCE}}\n{{MPN}}")
   (lock_assembly false)
   (attribute "CAPACITANCE" (type capacitance) (unit microfarad) (value "1"))
-  (attribute "DIGIKEY" (type string) (unit none) (value "1276-6471-1-ND"))
   (device c139e505-592b-46ba-bdf2-acb7383ea0cd
    (variant 2ddd8dba-a872-4765-bcd5-9c5638484b45)
    (part "CL21B105KOFNNNG" (manufacturer "Samsung")
@@ -303,6 +303,8 @@
   (lock_assembly false)
   (device e5671e21-ec1c-42ad-b413-1806e3947f8e
    (variant 2ddd8dba-a872-4765-bcd5-9c5638484b45)
+   (part "USB4085-GF-A" (manufacturer "GCT")
+   )
   )
   (signal 01e03995-75ac-4829-9276-93e0463434d7 (net 1bfc67da-4721-4b85-a19d-5e23e7d2d079))
   (signal 0d02114e-72fb-4c13-b57f-7373fcd47dfb (net none))
@@ -354,6 +356,13 @@
   (signal 372986c0-4a39-4c16-b135-2457823ee4ae (net 93ce9c03-b1e3-4ca9-b33b-f1062f8ae73c))
   (signal 61cc3f40-25f9-4a0d-b64e-723f8e939cfd (net 035c2839-e68a-4e02-b301-837bb065135d))
   (signal ae937403-19c5-4913-bace-e700d8033163 (net 46dc1a75-81a6-4ae8-a6cd-24ff74d5c5c0))
+ )
+ (component a0823bfe-b7f6-4c9d-8acf-b570d53e5ab8
+  (lib_component 8076f6be-bfab-4fc1-9772-5d54465dd7e1)
+  (lib_variant f09ad258-595b-4ee9-a1fc-910804a203ae)
+  (name "GND10") (value "GND")
+  (lock_assembly false)
+  (signal ff161c97-29a5-43aa-a9ae-3ca7a66982ce (net 93ce9c03-b1e3-4ca9-b33b-f1062f8ae73c))
  )
  (component a6656adc-d9b3-456c-9ac9-7000a20ae98c
   (lib_component 58c3c6cd-11eb-4557-aa3f-d3e05874afde)
@@ -444,18 +453,6 @@
   (signal 240a277c-c743-42e2-97a2-f314e6706ff8 (net fde51a5f-2a7c-4c9e-8a77-cf450deec8eb))
   (signal c9881340-c7e8-4f5e-8106-7cc503d0a4e1 (net 46dc1a75-81a6-4ae8-a6cd-24ff74d5c5c0))
   (signal f6db9629-98f3-4694-ba05-245c96f02470 (net 93ce9c03-b1e3-4ca9-b33b-f1062f8ae73c))
- )
- (component bda1e9e1-86cd-428e-b986-60d8acde2b35
-  (lib_component d167e0e3-6a92-4b76-b013-77b9c230e5f1)
-  (lib_variant 8cd7b37f-e5fa-4af5-a8dd-d78830bba3af)
-  (name "C5") (value "{{CAPACITANCE}}")
-  (lock_assembly false)
-  (attribute "CAPACITANCE" (type capacitance) (unit nanofarad) (value ""))
-  (device c139e505-592b-46ba-bdf2-acb7383ea0cd
-   (variant 2ddd8dba-a872-4765-bcd5-9c5638484b45)
-  )
-  (signal 1c1c7abc-7b40-4f92-b533-f65604644db7 (net 23322c80-2614-4e01-984d-85ef1bc485d2))
-  (signal 6d776f4d-2a7c-4128-a98a-dbb1dd861411 (net 93ce9c03-b1e3-4ca9-b33b-f1062f8ae73c))
  )
  (component be452fd5-e81b-4d5a-84f5-64df5b0b6004
   (lib_component ef80cd5e-2689-47ee-8888-31d04fc99174)
@@ -613,10 +610,9 @@
  (component f9a7a7fc-f405-42fc-a433-381c01233730
   (lib_component d167e0e3-6a92-4b76-b013-77b9c230e5f1)
   (lib_variant 8cd7b37f-e5fa-4af5-a8dd-d78830bba3af)
-  (name "C6") (value "{{CAPACITANCE}}")
+  (name "C6") (value "{{CAPACITANCE}}\n{{MPN}}")
   (lock_assembly false)
   (attribute "CAPACITANCE" (type capacitance) (unit nanofarad) (value "100"))
-  (attribute "DIGIKEY" (type string) (unit none) (value "1276-1099-1-ND"))
   (device c139e505-592b-46ba-bdf2-acb7383ea0cd
    (variant 2ddd8dba-a872-4765-bcd5-9c5638484b45)
    (part "CL21B104KACNNNC" (manufacturer "Samsung")
