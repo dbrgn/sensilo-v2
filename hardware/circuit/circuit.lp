@@ -135,6 +135,20 @@
   (signal 56821da8-23d7-4cc4-b63c-1c430314b594 (net 93ce9c03-b1e3-4ca9-b33b-f1062f8ae73c))
   (signal 5b930686-787e-42b2-8434-883ff4f607c1 (net 035c2839-e68a-4e02-b301-837bb065135d))
  )
+ (component 12b534c0-9f62-4d70-bf49-6db019e27f92
+  (lib_component 8076f6be-bfab-4fc1-9772-5d54465dd7e1)
+  (lib_variant f09ad258-595b-4ee9-a1fc-910804a203ae)
+  (name "GND8") (value "GND")
+  (lock_assembly false)
+  (signal ff161c97-29a5-43aa-a9ae-3ca7a66982ce (net 93ce9c03-b1e3-4ca9-b33b-f1062f8ae73c))
+ )
+ (component 270c7335-c3cd-4758-ba86-eb0221b39a76
+  (lib_component 58c3c6cd-11eb-4557-aa3f-d3e05874afde)
+  (lib_variant afb86b45-68ec-47b6-8d96-153d73567228)
+  (name "VCC9") (value "3V3")
+  (lock_assembly false)
+  (signal 1d893320-f811-4a79-b64e-cc23d749d394 (net fde51a5f-2a7c-4c9e-8a77-cf450deec8eb))
+ )
  (component 34f50de8-3714-4f48-a34e-2d78c82d6e0b
   (lib_component 58c3c6cd-11eb-4557-aa3f-d3e05874afde)
   (lib_variant afb86b45-68ec-47b6-8d96-153d73567228)
@@ -416,6 +430,13 @@
   )
   (signal 7b023430-b68f-403a-80b8-c7deb12e7a0c (net 93ce9c03-b1e3-4ca9-b33b-f1062f8ae73c))
   (signal f1467b5c-cc7d-44b4-8076-d729f35b3a6a (net 3a9092c8-015a-45b7-aade-fa9f23eec05f))
+ )
+ (component b66553fd-ab74-4b7d-ad4c-2e4c35fc298f
+  (lib_component 8076f6be-bfab-4fc1-9772-5d54465dd7e1)
+  (lib_variant f09ad258-595b-4ee9-a1fc-910804a203ae)
+  (name "GND14") (value "GND")
+  (lock_assembly false)
+  (signal ff161c97-29a5-43aa-a9ae-3ca7a66982ce (net 93ce9c03-b1e3-4ca9-b33b-f1062f8ae73c))
  )
  (component b735c578-a9d1-4089-851f-8161c632a43a
   (lib_component ef80cd5e-2689-47ee-8888-31d04fc99174)
